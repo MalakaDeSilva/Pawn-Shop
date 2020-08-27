@@ -8,14 +8,31 @@ package com.pawnshop.customermgmt.view;
 import com.pawnshop.customermgmt.contoller.CustomerDAO;
 import com.pawnshop.customermgmt.contoller.ICustomerDAO;
 import com.pawnshop.customermgmt.model.Customer;
+import java.io.IOException;
 import java.net.URL;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
@@ -23,35 +40,131 @@ import javafx.scene.control.TextField;
  */
 public class ViewCustomerFXMLController implements Initializable {
 
+    ICustomerDAO customerDAO = new CustomerDAO();
+    public static Stage stage;
+    public static Customer customer;
     @FXML
-    private TextField contactNo;
+    private TableView<Customer> table;
 
     @FXML
-    private TextField email;
+    private TableColumn<Customer, String> colNIC;
 
     @FXML
-    private TextField name;
+    private TableColumn<Customer, String> colName;
 
     @FXML
-    private TextField nic;
+    private TableColumn<Customer, Integer> colContactNo;
 
     @FXML
-    private TextArea address;
+    private TableColumn<Customer, String> colEmail;
 
     @FXML
-    private Button btnSave;
+    private TableColumn<Customer, String> colAddress;
+    @FXML
+    private Button btnNewCust;
 
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ContextMenu conMenu = new ContextMenu();
 
+        MenuItem itemDelete = new MenuItem("Delete");
+        itemDelete.setOnAction((event) -> {
+            deleteCustomerWindow(table.getSelectionModel().getSelectedItem().getName());
+        });
+
+        MenuItem itemUpdate = new MenuItem("Update");
+        itemUpdate.setOnAction((event) -> {
+            updateCustomerWindow();
+        });
+
+        conMenu.getItems().addAll(itemDelete, itemUpdate);
+
+        colNIC.setCellValueFactory(new PropertyValueFactory<>("nic"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colContactNo.setCellValueFactory(new PropertyValueFactory<>("contactNo"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+
+        table.getItems().setAll(getCustomers());
+        table.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+
+        table.setContextMenu(conMenu);
+        table.setOnMousePressed((MouseEvent event) -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                updateCustomerWindow();
+            } 
+        });
     }
 
     @FXML
-    void actionSave(ActionEvent event) {
-        ICustomerDAO custDAO = new CustomerDAO();
-        System.out.println(nic.getText());
+    void actionNewCustomer(ActionEvent event) {
+        newCustomerWindow();
+    }
+
+    private List<Customer> getCustomers() {
+        List<Customer> list = customerDAO.getAllCustomers();
+
+        return list;
+    }
+
+    private void refresh() {
+        colNIC.setCellValueFactory(new PropertyValueFactory<>("nic"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colContactNo.setCellValueFactory(new PropertyValueFactory<>("contactNo"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+
+        table.getItems().setAll(getCustomers());
+        table.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+    }
+
+    private void updateCustomerWindow() {
+        Parent updateCustomer;
+        customer = table.getSelectionModel().getSelectedItem();
+        try {
+            updateCustomer = FXMLLoader.load(getClass().getResource("/com/pawnshop/customermgmt/view/updateCustomerFXML.fxml"));
+
+            Scene scene = new Scene(updateCustomer);
+            stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            stage.setOnHiding((WindowEvent we) -> refresh());
+        } catch (IOException ex) {
+            Logger.getLogger(ViewCustomerFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void newCustomerWindow() {
+        try {
+            Parent addCustomer = FXMLLoader.load(getClass().getResource("/com/pawnshop/customermgmt/view/saveCustomerFXML.fxml"));
+            Scene scene = new Scene(addCustomer);
+            stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            stage.setOnHiding((WindowEvent we) -> refresh());
+        } catch (IOException ex) {
+            Logger.getLogger(ViewCustomerFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void deleteCustomerWindow(String custName) {
+        
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Delete Customer: " + custName);
+        alert.setContentText("Are you sure?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            customerDAO.deleteCustomer(table.getSelectionModel().getSelectedItem().getNic());
+            refresh();
+        }
     }
 }

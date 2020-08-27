@@ -7,6 +7,9 @@
 package com.pawnshop.constants;
 
 public class Constants {
+    // General 
+    public static String SHOP_TITLE = "Supipi Pawning Shop";
+    
     // Customer Management
     public static String ADD_CUSTOMER       = "INSERT INTO Customers (nic, name, address, contact_no, email) VALUES (?, ?, ?, ?, ?)";
     public static String VIEW_CUSTOMER      = "SELECT * FROM Customers WHERE nic = ?";
