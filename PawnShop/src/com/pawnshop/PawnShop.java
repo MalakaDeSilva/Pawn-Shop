@@ -5,6 +5,7 @@
  */
 package com.pawnshop;
 
+import com.pawnshop.constants.Constants;
 import com.pawnshop.util.DBConnection;
 import java.io.IOException;
 import javafx.application.Application;
@@ -14,14 +15,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class PawnShop extends Application {
+    public static Scene scene;
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("viewCustomerFXML.fxml"));
-        
-        Scene scene = new Scene(root, 300, 250);
+        Parent viewCustomer = FXMLLoader.load(getClass().getResource("/com/pawnshop/customermgmt/view/viewCustomerFXML.fxml"));
+
+        scene = new Scene(viewCustomer);
         DBConnection.getConnection();
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle(Constants.SHOP_TITLE);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -32,5 +34,5 @@ public class PawnShop extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
