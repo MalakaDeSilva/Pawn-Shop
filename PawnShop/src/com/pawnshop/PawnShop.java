@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -39,9 +40,13 @@ public class PawnShop extends Application {
     public static void main(String[] args) {
         ScriptRunner script = new ScriptRunner(DBConnection.getConnection());
         try {
+            script.setLogWriter(null);
+            System.out.println("Executing database checks....");
             script.runScript(new BufferedReader(new FileReader("dbscript/pawning_shop_db.sql")));
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
+        } finally{
+            System.out.println("Database checks completed....");
         }
         launch(args);
     }
