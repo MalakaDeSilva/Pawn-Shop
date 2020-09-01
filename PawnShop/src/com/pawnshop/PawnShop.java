@@ -7,16 +7,21 @@ package com.pawnshop;
 
 import com.pawnshop.constants.Constants;
 import com.pawnshop.util.DBConnection;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.ibatis.jdbc.ScriptRunner;
 
 public class PawnShop extends Application {
+
     public static Scene scene;
-    
+
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent viewCustomer = FXMLLoader.load(getClass().getResource("/com/pawnshop/customermgmt/view/viewCustomerFXML.fxml"));
@@ -32,6 +37,12 @@ public class PawnShop extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        ScriptRunner script = new ScriptRunner(DBConnection.getConnection());
+        try {
+            script.runScript(new BufferedReader(new FileReader("dbscript/pawning_shop_db.sql")));
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
         launch(args);
     }
 
