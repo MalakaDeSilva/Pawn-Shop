@@ -38,6 +38,16 @@
                         <Font size="15.0" />
                      </font>
                   </Button>
+                  <Button layoutX="262.0" layoutY="317.0" mnemonicParsing="false" onAction="#actionViewLoans" prefHeight="33.0" prefWidth="126.0" text="View Loans">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="90.0" layoutY="317.0" mnemonicParsing="false" onAction="#actionViewItems" prefHeight="33.0" prefWidth="126.0" text="View Items">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </items>

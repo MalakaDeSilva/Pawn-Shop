@@ -5,6 +5,7 @@
  */
 package com.pawnshop.itemmgmt.view;
 
+import com.pawnshop.PawnShop;
 import com.pawnshop.constants.Constants;
 import com.pawnshop.itemmgmt.controller.IItemDAO;
 import com.pawnshop.itemmgmt.controller.ItemDAO;
@@ -34,7 +35,7 @@ import javafx.stage.WindowEvent;
  *
  */
 public class ViewItemsFXMLController implements Initializable {
-
+    public static Stage parentStage = PawnShop.stage;
     IItemDAO itemDAO = new ItemDAO();
     public static Stage stage;
     public static Item item;
@@ -87,6 +88,29 @@ public class ViewItemsFXMLController implements Initializable {
     @FXML
     void actionNewItem(ActionEvent event) {
         newItemWindow();
+    }
+    
+    
+    @FXML
+    void actionViewCustomers(ActionEvent event) {
+        try {
+            Parent viewCustomer = FXMLLoader.load(getClass().getResource("/com/pawnshop/customermgmt/view/viewCustomerFXML.fxml"));
+            
+            parentStage.setScene(new Scene(viewCustomer));
+        } catch (IOException ex) {
+            Logger.getLogger(ViewItemsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    void actionViewLoans(ActionEvent event) {
+        try {
+            Parent viewLoan = FXMLLoader.load(getClass().getResource("/com/pawnshop/loanmgmt/view/viewLoansFXML.fxml"));
+            
+            parentStage.setScene(new Scene(viewLoan));
+        } catch (IOException ex) {
+            Logger.getLogger(ViewItemsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private List<Item> getAllItems() {

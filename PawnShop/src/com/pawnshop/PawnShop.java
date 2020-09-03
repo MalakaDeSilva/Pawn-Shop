@@ -19,21 +19,19 @@ import javafx.stage.Stage;
 import org.apache.ibatis.jdbc.ScriptRunner;
 
 public class PawnShop extends Application {
-
-    public static Scene scene;
+    public static Stage stage = new Stage();
+    Scene scene;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent viewEmployees = FXMLLoader.load(getClass().getResource("/com/pawnshop/empmgmt/view/viewEmployeesFXML.fxml"));
-        Parent viewCustomer = FXMLLoader.load(getClass().getResource("/com/pawnshop/customermgmt/view/viewCustomerFXML.fxml"));
         Parent viewItem = FXMLLoader.load(getClass().getResource("/com/pawnshop/itemmgmt/view/viewItemsFXML.fxml"));
-        Parent viewLoan = FXMLLoader.load(getClass().getResource("/com/pawnshop/loanmgmt/view/viewLoansFXML.fxml"));
         
-        scene = new Scene(viewLoan);
+        scene = new Scene(viewItem);
         DBConnection.getConnection();
-        primaryStage.setTitle(Constants.SHOP_TITLE);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        stage.setTitle(Constants.SHOP_TITLE);
+        stage.setScene(scene);
+        stage.show();
     }
 
     /**

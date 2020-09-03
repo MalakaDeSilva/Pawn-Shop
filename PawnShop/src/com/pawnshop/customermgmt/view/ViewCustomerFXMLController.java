@@ -5,10 +5,13 @@
  */
 package com.pawnshop.customermgmt.view;
 
+import com.pawnshop.PawnShop;
 import com.pawnshop.constants.Constants;
 import com.pawnshop.customermgmt.contoller.CustomerDAO;
 import com.pawnshop.customermgmt.contoller.ICustomerDAO;
 import com.pawnshop.customermgmt.model.Customer;
+import com.pawnshop.itemmgmt.view.ViewItemsFXMLController;
+import static com.pawnshop.itemmgmt.view.ViewItemsFXMLController.parentStage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -41,6 +44,7 @@ import javafx.stage.WindowEvent;
  */
 public class ViewCustomerFXMLController implements Initializable {
 
+    public static Stage parentStage = PawnShop.stage;
     ICustomerDAO customerDAO = new CustomerDAO();
     public static Stage stage;
     public static Customer customer;
@@ -99,13 +103,35 @@ public class ViewCustomerFXMLController implements Initializable {
         table.setOnMousePressed((MouseEvent event) -> {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                 updateCustomerWindow();
-            } 
+            }
         });
     }
 
     @FXML
     void actionNewCustomer(ActionEvent event) {
         newCustomerWindow();
+    }
+
+    @FXML
+    void actionViewItems(ActionEvent event) {
+        try {
+            Parent viewItem = FXMLLoader.load(getClass().getResource("/com/pawnshop/itemmgmt/view/viewItemsFXML.fxml"));
+            
+            parentStage.setScene(new Scene(viewItem));
+        } catch (IOException ex) {
+            Logger.getLogger(ViewCustomerFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    void actionViewLoans(ActionEvent event) {
+        try {
+            Parent viewLoan = FXMLLoader.load(getClass().getResource("/com/pawnshop/loanmgmt/view/viewLoansFXML.fxml"));
+
+            parentStage.setScene(new Scene(viewLoan));
+        } catch (IOException ex) {
+            Logger.getLogger(ViewItemsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private List<Customer> getCustomers() {
@@ -157,7 +183,7 @@ public class ViewCustomerFXMLController implements Initializable {
     }
 
     private void deleteCustomerWindow(String custName) {
-        
+
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText("Delete Customer: " + custName);

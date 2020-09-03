@@ -5,7 +5,11 @@
  */
 package com.pawnshop.loanmgmt.view;
 
-import static com.pawnshop.itemmgmt.view.ViewItemsFXMLController.stage;
+import com.pawnshop.PawnShop;
+import com.pawnshop.customermgmt.view.ViewCustomerFXMLController;
+import static com.pawnshop.customermgmt.view.ViewCustomerFXMLController.parentStage;
+import com.pawnshop.itemmgmt.view.ViewItemsFXMLController;
+import static com.pawnshop.itemmgmt.view.ViewItemsFXMLController.parentStage;
 import com.pawnshop.loanmgmt.controller.ILoanDAO;
 import com.pawnshop.loanmgmt.controller.LoanDAO;
 import com.pawnshop.loanmgmt.model.Loan;
@@ -15,6 +19,7 @@ import java.sql.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -33,6 +38,7 @@ import javafx.stage.Stage;
  */
 public class ViewLoansFXMLController implements Initializable {
 
+    public static Stage parentStage = PawnShop.stage;
     public static Stage stage;
     ILoanDAO loanDAO = new LoanDAO();
     public static Loan loan;
@@ -84,6 +90,28 @@ public class ViewLoansFXMLController implements Initializable {
         table.getItems().setAll(loanDAO.getAllLoans());
 
         table.setContextMenu(createContextMenu());
+    }
+
+    @FXML
+    void actionViewCustomers(ActionEvent event) {
+        try {
+            Parent viewCustomer = FXMLLoader.load(getClass().getResource("/com/pawnshop/customermgmt/view/viewCustomerFXML.fxml"));
+
+            parentStage.setScene(new Scene(viewCustomer));
+        } catch (IOException ex) {
+            Logger.getLogger(ViewItemsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    void actionViewItems(ActionEvent event) {
+        try {
+            Parent viewItem = FXMLLoader.load(getClass().getResource("/com/pawnshop/itemmgmt/view/viewItemsFXML.fxml"));
+
+            parentStage.setScene(new Scene(viewItem));
+        } catch (IOException ex) {
+            Logger.getLogger(ViewCustomerFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private ContextMenu createContextMenu() {
