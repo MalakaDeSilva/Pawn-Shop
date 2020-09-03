@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pawnshop.customermgmt.view.ViewCustomerFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pawnshop.itemmgmt.view.ViewItemsFXMLController">
    <children>
       <SplitPane dividerPositions="0.14912280701754385" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL">
          <items>
@@ -24,26 +24,28 @@
             </AnchorPane>
             <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="508.0" prefWidth="998.0">
                <children>
-                  <TableView fx:id="table" layoutX="90.0" layoutY="50.0" prefHeight="200.0">
-                    <columns>
-                      <TableColumn fx:id="colNIC" maxWidth="1.7976931348623157E308" text="NIC" />
-                      <TableColumn fx:id="colName" maxWidth="1.7976931348623157E308" prefWidth="150.0" text="Name" />
-                        <TableColumn fx:id="colContactNo" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="Contact No" />
-                        <TableColumn fx:id="colEmail" prefWidth="200.0" text="Email" />
-                        <TableColumn fx:id="colAddress" maxWidth="1.7976931348623157E308" prefWidth="300.0" text="Address" />
-                    </columns>
+                  <TableView fx:id="table" layoutX="90.0" layoutY="50.0" prefHeight="357.0" prefWidth="834.0">
+                     <columns>
+                        <TableColumn fx:id="colItemId" maxWidth="1.7976931348623157E308" prefWidth="72.0" text="Item Id" />
+                        <TableColumn fx:id="colItemType" maxWidth="1.7976931348623157E308" prefWidth="109.0" text="Item Type" />
+                        <TableColumn fx:id="colWeight" maxWidth="1.7976931348623157E308" prefWidth="122.0" text="Weight" />
+                        <TableColumn fx:id="colValue" prefWidth="90.0" text="Value" />
+                        <TableColumn fx:id="colStatus" maxWidth="1.7976931348623157E308" prefWidth="108.0" text="Status" />
+                        <TableColumn fx:id="colDescription" prefWidth="216.0" text="Description" />
+                        <TableColumn fx:id="colCustomer" prefWidth="116.0" text="Customer" />
+                     </columns>
                   </TableView>
-                  <Button fx:id="btnNewCust" layoutX="796.0" layoutY="307.0" mnemonicParsing="false" onAction="#actionNewCustomer" prefHeight="33.0" prefWidth="126.0" text="New Customer">
+                  <Button layoutX="802.0" layoutY="430.0" mnemonicParsing="false" onAction="#actionNewItem" prefHeight="33.0" prefWidth="126.0" text="New Item">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button layoutX="262.0" layoutY="317.0" mnemonicParsing="false" onAction="#actionViewLoans" prefHeight="33.0" prefWidth="126.0" text="View Loans">
+                  <Button layoutX="262.0" layoutY="440.0" mnemonicParsing="false" onAction="#actionViewCustomers" prefHeight="33.0" prefWidth="151.0" text="View Customers">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button layoutX="90.0" layoutY="317.0" mnemonicParsing="false" onAction="#actionViewItems" prefHeight="33.0" prefWidth="126.0" text="View Items">
+                  <Button layoutX="90.0" layoutY="440.0" mnemonicParsing="false" onAction="#actionViewLoans" prefHeight="33.0" prefWidth="126.0" text="View Loans">
                      <font>
                         <Font size="15.0" />
                      </font>

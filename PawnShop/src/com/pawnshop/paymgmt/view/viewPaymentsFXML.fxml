@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.pawnshop.paymgmt.view.ViewPaymentsFXMLController">
+   <children>
+      <SplitPane dividerPositions="0.14912280701754385" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL">
+         <items>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <children>
+                  <ImageView fitHeight="161.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="838.0" AnchorPane.topAnchor="0.0">
+                     <image>
+                        <Image url="@../../../../images/pawn.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="508.0" prefWidth="998.0">
+               <children>
+                  <TableView fx:id="table" layoutX="51.0" layoutY="50.0" prefHeight="357.0" prefWidth="895.0">
+                     <columns>
+                        <TableColumn fx:id="colPaymentId" maxWidth="1.7976931348623157E308" prefWidth="94.0" text="Payment Id" />
+                        <TableColumn fx:id="colPaymentType" prefWidth="122.0" text="Payment Type" />
+                        <TableColumn fx:id="colAmount" maxWidth="1.7976931348623157E308" prefWidth="95.0" text="Amount" />
+                        <TableColumn fx:id="colEmployee" maxWidth="1.7976931348623157E308" prefWidth="161.0" text="Accepted By" />
+                        <TableColumn fx:id="colCustomer" prefWidth="164.0" text="Customer" />
+                        <TableColumn fx:id="colLoanId" maxWidth="1.7976931348623157E308" prefWidth="93.0" text="Loan Id" />
+                        <TableColumn fx:id="colPayDate" prefWidth="165.0" text="Payment Date" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

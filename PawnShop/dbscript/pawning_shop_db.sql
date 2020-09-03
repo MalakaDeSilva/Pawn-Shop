@@ -44,10 +44,11 @@ CREATE TABLE IF NOT EXISTS `customers` (
 -- Table structure for table `employee`
 --
 
-CREATE TABLE IF NOT EXISTS `employee` (
-  `empid` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`empid`)
+CREATE TABLE IF NOT EXISTS employee (
+  nic varchar(20) NOT NULL,
+  name varchar(100) NOT NULL,
+  password varchar(20) NOT NULL,
+  PRIMARY KEY (nic)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -56,15 +57,16 @@ CREATE TABLE IF NOT EXISTS `employee` (
 -- Table structure for table `item`
 --
 
-CREATE TABLE IF NOT EXISTS `item` (
-  `item_id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(50) NOT NULL,
-  `weight` double NOT NULL,
-  `value` double NOT NULL,
-  `status` varchar(20) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `nic` varchar(15) NOT NULL,
-  PRIMARY KEY (`item_id`,`nic`)
+CREATE TABLE IF NOT EXISTS item (
+  item_id int(11) NOT NULL AUTO_INCREMENT,
+  type varchar(50) NOT NULL,
+  weight double NOT NULL,
+  value double NOT NULL,
+  status varchar(20) NOT NULL,
+  description varchar(255) NOT NULL,
+  nic varchar(15) NOT NULL,
+  PRIMARY KEY (item_id),
+  FOREIGN KEY (nic) REFERENCES customers(nic) ON DELETE CASCADE 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -73,15 +75,18 @@ CREATE TABLE IF NOT EXISTS `item` (
 -- Table structure for table `loan`
 --
 
-CREATE TABLE IF NOT EXISTS `loan` (
-  `loan_id` int(11) NOT NULL AUTO_INCREMENT,
-  `value` double NOT NULL,
-  `duedate` datetime NOT NULL,
-  `billdate` datetime NOT NULL,
-  `emp_id` int(11) NOT NULL,
-  `nic` varchar(15) NOT NULL,
-  `item_id` int(11) NOT NULL,
-  PRIMARY KEY (`loan_id`,`nic`,`item_id`)
+CREATE TABLE IF NOT EXISTS loan (
+  loan_id int(11) NOT NULL AUTO_INCREMENT,
+  value double NOT NULL,
+  duedate datetime NOT NULL,
+  billdate datetime NOT NULL,
+  emp_nic varchar(20) NOT NULL,
+  nic varchar(15) NOT NULL,
+  item_id int(11) NOT NULL,
+  PRIMARY KEY (loan_id),
+  FOREIGN KEY (emp_nic) REFERENCES employee(nic),
+  FOREIGN KEY (item_id) REFERENCES item(item_id) ON DELETE CASCADE,
+  FOREIGN KEY (nic) REFERENCES customers(nic)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -90,12 +95,15 @@ CREATE TABLE IF NOT EXISTS `loan` (
 -- Table structure for table `payment`
 --
 
-CREATE TABLE IF NOT EXISTS `payment` (
-  `payment_id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(50) NOT NULL,
-  `amount` double NOT NULL,
-  `emp_id` int(11) NOT NULL,
-  `nic` varchar(15) NOT NULL,
-  `loan_id` int(11) NOT NULL,
-  PRIMARY KEY (`payment_id`,`nic`,`loan_id`)
+CREATE TABLE IF NOT EXISTS payment (
+  payment_id int(11) NOT NULL AUTO_INCREMENT,
+  type varchar(50) NOT NULL,
+  amount double NOT NULL,
+  emp_nic varchar(20) NOT NULL,
+  nic varchar(15) NOT NULL,
+  loan_id int(11) NOT NULL,
+  PRIMARY KEY (payment_id),
+  FOREIGN KEY (emp_nic) REFERENCES employee(nic),
+  FOREIGN KEY (nic) REFERENCES customers(nic) ON DELETE CASCADE,
+  FOREIGN KEY (loan_id) REFERENCES loan(loan_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
