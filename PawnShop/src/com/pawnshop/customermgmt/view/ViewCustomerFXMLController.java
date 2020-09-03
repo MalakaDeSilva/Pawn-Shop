@@ -5,6 +5,7 @@
  */
 package com.pawnshop.customermgmt.view;
 
+import com.pawnshop.constants.Constants;
 import com.pawnshop.customermgmt.contoller.CustomerDAO;
 import com.pawnshop.customermgmt.contoller.ICustomerDAO;
 import com.pawnshop.customermgmt.model.Customer;
@@ -132,6 +133,7 @@ public class ViewCustomerFXMLController implements Initializable {
 
             Scene scene = new Scene(updateCustomer);
             stage = new Stage();
+            stage.setTitle(Constants.ADD_CUSTOMER_TITLE);
             stage.setScene(scene);
             stage.show();
             stage.setOnHiding((WindowEvent we) -> refresh());

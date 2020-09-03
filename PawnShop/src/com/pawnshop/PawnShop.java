@@ -11,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,9 +24,12 @@ public class PawnShop extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        Parent viewEmployees = FXMLLoader.load(getClass().getResource("/com/pawnshop/empmgmt/view/viewEmployeesFXML.fxml"));
         Parent viewCustomer = FXMLLoader.load(getClass().getResource("/com/pawnshop/customermgmt/view/viewCustomerFXML.fxml"));
-
-        scene = new Scene(viewCustomer);
+        Parent viewItem = FXMLLoader.load(getClass().getResource("/com/pawnshop/itemmgmt/view/viewItemsFXML.fxml"));
+        Parent viewLoan = FXMLLoader.load(getClass().getResource("/com/pawnshop/loanmgmt/view/viewLoansFXML.fxml"));
+        
+        scene = new Scene(viewLoan);
         DBConnection.getConnection();
         primaryStage.setTitle(Constants.SHOP_TITLE);
         primaryStage.setScene(scene);
@@ -45,7 +47,7 @@ public class PawnShop extends Application {
             script.runScript(new BufferedReader(new FileReader("dbscript/pawning_shop_db.sql")));
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
-        } finally{
+        } finally {
             System.out.println("Database checks completed....");
         }
         launch(args);
