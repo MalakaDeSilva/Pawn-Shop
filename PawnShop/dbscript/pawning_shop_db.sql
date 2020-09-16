@@ -105,5 +105,5 @@ CREATE TABLE IF NOT EXISTS payment (
   PRIMARY KEY (payment_id),
   FOREIGN KEY (emp_nic) REFERENCES employee(nic),
   FOREIGN KEY (nic) REFERENCES customers(nic) ON DELETE CASCADE,
-  FOREIGN KEY (loan_id) REFERENCES loan(loan_id)
+  FOREIGN KEY (loan_id) REFERENCES loan(loan_id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
