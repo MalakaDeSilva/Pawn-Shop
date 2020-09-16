@@ -13,6 +13,7 @@ import com.pawnshop.itemmgmt.model.Item;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,8 +23,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -35,6 +39,7 @@ import javafx.stage.WindowEvent;
  *
  */
 public class ViewItemsFXMLController implements Initializable {
+
     public static Stage parentStage = PawnShop.stage;
     IItemDAO itemDAO = new ItemDAO();
     public static Stage stage;
@@ -83,19 +88,19 @@ public class ViewItemsFXMLController implements Initializable {
         table.getItems().setAll(getAllItems());
 
         table.setContextMenu(createContextMenu());
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
     @FXML
     void actionNewItem(ActionEvent event) {
         newItemWindow();
     }
-    
-    
+
     @FXML
     void actionViewCustomers(ActionEvent event) {
         try {
             Parent viewCustomer = FXMLLoader.load(getClass().getResource("/com/pawnshop/customermgmt/view/viewCustomerFXML.fxml"));
-            
+
             parentStage.setScene(new Scene(viewCustomer));
         } catch (IOException ex) {
             Logger.getLogger(ViewItemsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
@@ -106,7 +111,7 @@ public class ViewItemsFXMLController implements Initializable {
     void actionViewLoans(ActionEvent event) {
         try {
             Parent viewLoan = FXMLLoader.load(getClass().getResource("/com/pawnshop/loanmgmt/view/viewLoansFXML.fxml"));
-            
+
             parentStage.setScene(new Scene(viewLoan));
         } catch (IOException ex) {
             Logger.getLogger(ViewItemsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
@@ -166,8 +171,52 @@ public class ViewItemsFXMLController implements Initializable {
             issueLoan();
         });
 
-        conMenu.getItems().addAll(loanIssue);
+        MenuItem seperator = new SeparatorMenuItem();
+
+        MenuItem deleteItem = new MenuItem("Delete");
+        deleteItem.setOnAction((event) -> {
+            deleteItemWindow();
+        });
+
+        MenuItem updateItem = new MenuItem("Update");
+        updateItem.setOnAction((event) -> {
+            updateItemWindow();
+        });
+
+        conMenu.getItems().addAll(loanIssue, seperator, deleteItem, updateItem);
 
         return conMenu;
+    }
+
+    private void deleteItemWindow() {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Delete Item: ");
+        alert.setContentText("Are you sure?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            itemDAO.deleteItem(table.getSelectionModel().getSelectedItem().getItemId());
+            refresh();
+        }
+    }
+
+    private void updateItemWindow() {
+        Parent updateItem;
+        item = table.getSelectionModel().getSelectedItem();
+        try {
+            updateItem = FXMLLoader.load(getClass().getResource("/com/pawnshop/itemmgmt/view/updateItemFXML.fxml"));
+
+            Scene scene = new Scene(updateItem);
+            stage = new Stage();
+            stage.setTitle(Constants.ADD_ITEM_TITLE);
+            stage.setScene(scene);
+            stage.show();
+            stage.setOnHiding((WindowEvent we) -> refresh());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
     }
 }

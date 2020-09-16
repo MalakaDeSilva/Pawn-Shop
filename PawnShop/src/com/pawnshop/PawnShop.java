@@ -30,6 +30,8 @@ public class PawnShop extends Application {
         scene = new Scene(viewItem);
         DBConnection.getConnection();
         stage.setTitle(Constants.SHOP_TITLE);
+        stage.setWidth(1100);
+        stage.setHeight(700);
         stage.setScene(scene);
         stage.show();
     }

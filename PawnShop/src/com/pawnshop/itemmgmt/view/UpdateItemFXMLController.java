@@ -18,60 +18,58 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
  *
  */
-public class SaveItemFXMLController implements Initializable {
+public class UpdateItemFXMLController implements Initializable {
+    
+    Item prevItem;
     
     @FXML
     private TextField itemType;
     
     @FXML
-    private TextField weight;
-    
-    @FXML
-    private TextField value;
-    
-    @FXML
-    private ComboBox<String> status;
-    
-    @FXML
-    private TextArea description;
-    
-    @FXML
-    private TextField nic;
-    
-    @FXML
-    private Button btnSave;
-    
-    @FXML
-    private Pane splitPane;
-    
-    @FXML
     private Text errItemType;
+    
+    @FXML
+    private TextField weight;
     
     @FXML
     private Text errWeight;
     
     @FXML
+    private TextField value;
+    
+    @FXML
     private Text errValue;
+    
+    @FXML
+    private ComboBox<String> status;
     
     @FXML
     private Text errStatus;
     
     @FXML
+    private TextArea description;
+    
+    @FXML
     private Text errDescription;
+    
+    @FXML
+    private TextField nic;
     
     @FXML
     private Text errCustomerNic;
     
     @FXML
-    void actionSave(ActionEvent event) {
-        saveItem();
+    private Button btnUpdate;
+    
+    @FXML
+    void actionUpdate(ActionEvent event) {
+        
     }
 
     /**
@@ -82,10 +80,12 @@ public class SaveItemFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        prevItem = ViewItemsFXMLController.item;
+        init(); // set previous values to fields
+
         status.getItems().add("Pawned");
         status.getItems().add("Acquired");
         status.getItems().add("To be sold");
-        status.setValue("Pawned");
         
         itemType.setOnKeyReleased((event) -> {
             errItemType.setText("");
@@ -110,9 +110,13 @@ public class SaveItemFXMLController implements Initializable {
         description.setOnKeyReleased((event) -> {
             errDescription.setText("");
         });
+        
+        btnUpdate.setOnAction((event) -> {
+            updateItem();
+        });
     }
     
-    private void saveItem() {
+    private void updateItem() {
         Item item = new Item();
         IItemDAO itemDAO = new ItemDAO();
         
@@ -145,12 +149,21 @@ public class SaveItemFXMLController implements Initializable {
             item.setNic(nic.getText());
             
             if (Validator.validate(item)) {
-                itemDAO.saveItem(item);
+                itemDAO.updateItem(item);
                 ViewItemsFXMLController.stage.close();
             }
         } catch (NumberFormatException ex) {
             
         }
+    }
+    
+    private void init() {
+        itemType.setText(prevItem.getItemType());
+        weight.setText(String.valueOf(prevItem.getWeight()));
+        value.setText(String.valueOf(prevItem.getValue()));
+        status.setValue(prevItem.getStatus());
+        description.setText(prevItem.getDescription());
+        nic.setText(prevItem.getNic());
     }
     
 }

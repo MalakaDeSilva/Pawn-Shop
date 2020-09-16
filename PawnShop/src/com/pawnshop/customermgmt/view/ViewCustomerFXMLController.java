@@ -11,7 +11,6 @@ import com.pawnshop.customermgmt.contoller.CustomerDAO;
 import com.pawnshop.customermgmt.contoller.ICustomerDAO;
 import com.pawnshop.customermgmt.model.Customer;
 import com.pawnshop.itemmgmt.view.ViewItemsFXMLController;
-import static com.pawnshop.itemmgmt.view.ViewItemsFXMLController.parentStage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -97,12 +96,15 @@ public class ViewCustomerFXMLController implements Initializable {
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
 
         table.getItems().setAll(getCustomers());
-        table.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        table.setContextMenu(conMenu);
         table.setOnMousePressed((MouseEvent event) -> {
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                 updateCustomerWindow();
+            }
+
+            if (event.isSecondaryButtonDown() && event.getClickCount() == 1 && table.getSelectionModel().getSelectedItem() != null) {
+                table.setContextMenu(conMenu);
             }
         });
     }
@@ -116,7 +118,7 @@ public class ViewCustomerFXMLController implements Initializable {
     void actionViewItems(ActionEvent event) {
         try {
             Parent viewItem = FXMLLoader.load(getClass().getResource("/com/pawnshop/itemmgmt/view/viewItemsFXML.fxml"));
-            
+
             parentStage.setScene(new Scene(viewItem));
         } catch (IOException ex) {
             Logger.getLogger(ViewCustomerFXMLController.class.getName()).log(Level.SEVERE, null, ex);
