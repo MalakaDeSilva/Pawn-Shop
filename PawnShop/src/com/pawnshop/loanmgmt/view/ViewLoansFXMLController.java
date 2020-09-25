@@ -57,6 +57,9 @@ public class ViewLoansFXMLController implements Initializable {
     private TableColumn<Loan, Integer> colItemId;
 
     @FXML
+    private TableColumn<Loan, Float> colRate;
+
+    @FXML
     private TableColumn<Loan, Double> colAmount;
 
     @FXML
@@ -84,6 +87,7 @@ public class ViewLoansFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         colLoanId.setCellValueFactory(new PropertyValueFactory<>("loanId"));
         colItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
+        colRate.setCellValueFactory(new PropertyValueFactory<>("rate"));
         colAmount.setCellValueFactory(new PropertyValueFactory<>("value"));
         colRemain.setCellValueFactory(new PropertyValueFactory<>("remainder"));
         colDueDate.setCellValueFactory(new PropertyValueFactory<>("duedate"));
@@ -141,7 +145,7 @@ public class ViewLoansFXMLController implements Initializable {
 
         MenuItem deleteLoan = new MenuItem("Delete");
         deleteLoan.setOnAction((event) -> {
-            deleteCustomerWindow();
+            deleteLoanWindow();
         });
         conMenu.getItems().addAll(payments, newPayment, new SeparatorMenuItem(), updateLoan, deleteLoan);
 
@@ -155,6 +159,7 @@ public class ViewLoansFXMLController implements Initializable {
             stage = new Stage();
             stage.setScene(scene);
             stage.show();
+            stage.setOnHiding((WindowEvent we) -> refresh());
         } catch (IOException ex) {
             Logger.getLogger(ViewLoansFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -163,6 +168,7 @@ public class ViewLoansFXMLController implements Initializable {
     private void refresh() {
         colLoanId.setCellValueFactory(new PropertyValueFactory<>("loanId"));
         colItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
+        colRate.setCellValueFactory(new PropertyValueFactory<>("rate"));
         colAmount.setCellValueFactory(new PropertyValueFactory<>("value"));
         colRemain.setCellValueFactory(new PropertyValueFactory<>("remainder"));
         colDueDate.setCellValueFactory(new PropertyValueFactory<>("duedate"));
@@ -183,6 +189,7 @@ public class ViewLoansFXMLController implements Initializable {
             stage = new Stage();
             stage.setScene(scene);
             stage.show();
+            stage.setOnHiding((WindowEvent we) -> refresh());
         } catch (IOException ex) {
             Logger.getLogger(ViewLoansFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -205,7 +212,7 @@ public class ViewLoansFXMLController implements Initializable {
         }
     }
 
-    private void deleteCustomerWindow() {
+    private void deleteLoanWindow() {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");

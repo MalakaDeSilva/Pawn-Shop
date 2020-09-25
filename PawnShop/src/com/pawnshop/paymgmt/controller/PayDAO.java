@@ -124,7 +124,8 @@ public class PayDAO implements IPayDAO {
 
             prepS.setDouble(1, payment.getAmount());
             prepS.setString(2, payment.getPaymentType());
-            prepS.setInt(3, payment.getPaymentId());
+            prepS.setString(3, payment.getEmpNic());
+            prepS.setInt(4, payment.getPaymentId());
 
             prepS.executeUpdate();
         } catch (SQLException ex) {

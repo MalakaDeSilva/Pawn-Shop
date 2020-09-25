@@ -14,7 +14,7 @@
    <children>
       <SplitPane fx:id="splitPane" dividerPositions="0.14912280701754385" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="1080.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
-            <AnchorPane maxHeight="151.0" maxWidth="1.7976931348623157E308" prefHeight="151.0" prefWidth="998.0">
+            <AnchorPane maxHeight="161.0" maxWidth="1.7976931348623157E308" prefHeight="161.0" prefWidth="998.0">
                <children>
                   <ImageView fitHeight="161.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="838.0" AnchorPane.topAnchor="0.0">
                      <image>
@@ -23,15 +23,16 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="508.0" prefWidth="998.0">
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="998.0">
                <children>
-                  <TableView fx:id="table" layoutX="90.0" layoutY="50.0" prefHeight="357.0" prefWidth="834.0" tableMenuButtonVisible="true" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0">
+                  <TableView fx:id="table" layoutX="90.0" layoutY="50.0" prefHeight="357.0" prefWidth="834.0" tableMenuButtonVisible="true" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="50.0">
                      
                       <columns>
                         <TableColumn fx:id="colItemId" prefWidth="72.0" text="Item Id" />
                         <TableColumn fx:id="colItemType" prefWidth="109.0" text="Item Type" />
-                        <TableColumn fx:id="colWeight" prefWidth="122.0" text="Weight" />
-                        <TableColumn fx:id="colValue" prefWidth="90.0" text="Value" />
+                        <TableColumn fx:id="colWeight" prefWidth="122.0" text="Weight  (g)" />
+                        <TableColumn fx:id="colKarat" prefWidth="75.0" text="Karat " />
+                        <TableColumn fx:id="colValue" prefWidth="90.0" text="Value  (Rs.)" />
                         <TableColumn fx:id="colStatus" prefWidth="108.0" text="Status" />
                         <TableColumn fx:id="colDescription" prefWidth="186.0" text="Description" />
                         <TableColumn fx:id="colCustomer" prefWidth="130.0" text="Customer" />
@@ -54,7 +55,7 @@
                   </Button>
                </children>
                <padding>
-                  <Insets bottom="50.0" />
+                  <Insets bottom="30.0" />
                </padding>
             </AnchorPane>
          </items>

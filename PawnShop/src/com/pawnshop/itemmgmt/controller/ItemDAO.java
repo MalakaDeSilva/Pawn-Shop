@@ -32,10 +32,11 @@ public class ItemDAO implements IItemDAO {
             
             prepS.setString(1, item.getItemType());
             prepS.setDouble(2, item.getWeight());
-            prepS.setFloat(3, item.getValue());
-            prepS.setString(4, item.getStatus());
-            prepS.setString(5, item.getDescription());
-            prepS.setString(6, item.getNic());
+            prepS.setInt(3, item.getKarat());
+            prepS.setFloat(4, item.getValue());
+            prepS.setString(5, item.getStatus());
+            prepS.setString(6, item.getDescription());
+            prepS.setString(7, item.getNic());
             
             prepS.executeUpdate();
         } catch (SQLException ex) {
@@ -72,6 +73,7 @@ public class ItemDAO implements IItemDAO {
                 
                 item.setItemId(resS.getInt("item_id"));
                 item.setItemType(resS.getString("type"));
+                item.setKarat(resS.getInt("karat"));
                 item.setWeight(resS.getDouble("weight"));
                 item.setValue(resS.getFloat("value"));
                 item.setStatus(resS.getString("status"));
@@ -101,11 +103,12 @@ public class ItemDAO implements IItemDAO {
             
             prepS.setString(1, item.getItemType());
             prepS.setDouble(2, item.getWeight());
-            prepS.setFloat(3, item.getValue());
-            prepS.setString(4, item.getStatus());
-            prepS.setString(5, item.getDescription());
-            prepS.setString(6, item.getNic());
-            prepS.setInt(7, item.getItemId());
+            prepS.setInt(3, item.getKarat());
+            prepS.setFloat(4, item.getValue());
+            prepS.setString(5, item.getStatus());
+            prepS.setString(6, item.getDescription());
+            prepS.setString(7, item.getNic());
+            prepS.setInt(8, item.getItemId());
             
             prepS.executeUpdate();
         } catch (SQLException ex) {
@@ -159,6 +162,7 @@ public class ItemDAO implements IItemDAO {
                 item.setItemId(resS.getInt("item_id"));
                 item.setItemType(resS.getString("type"));
                 item.setWeight(resS.getDouble("weight"));
+                item.setKarat(resS.getInt("karat"));
                 item.setValue(resS.getFloat("value"));
                 item.setStatus(resS.getString("status"));
                 item.setDescription(resS.getString("description"));

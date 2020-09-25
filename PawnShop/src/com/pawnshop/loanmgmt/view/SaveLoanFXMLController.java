@@ -28,44 +28,50 @@ import javafx.scene.text.Text;
  *
  */
 public class SaveLoanFXMLController implements Initializable {
-    
+
     Item _item = ViewItemsFXMLController.item;
     ILoanDAO loanDAO = new LoanDAO();
     Loan loan;
-    
+
     @FXML
     private TextField itemId;
-    
+
     @FXML
     private TextField value;
-    
+
     @FXML
     private TextField remainder;
-    
+
     @FXML
     private DatePicker dueDate;
-    
+
     @FXML
     private DatePicker billDate;
-    
+
     @FXML
     private TextField empNic;
-    
+
     @FXML
     private TextField customerNic;
-    
+
+    @FXML
+    private TextField rate;
+
+    @FXML
+    private Text errRate;
+
     @FXML
     private Text errItemId;
-    
+
     @FXML
     private Text errValue;
-    
+
     @FXML
     private Text errRemainder;
-    
+
     @FXML
     private Text errDueDate;
-    
+
     @FXML
     private Text errCustomerNic;
     @FXML
@@ -81,40 +87,49 @@ public class SaveLoanFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         billDate.setValue(LocalDate.now());
         empNic.setText("963374437V");
+        value.setText(String.valueOf(_item.getValue()));
+        
         if (_item != null) {
             itemId.setText(String.valueOf(_item.getItemId()));
             customerNic.setText(_item.getNic());
         }
-        
+
         itemId.setOnKeyReleased((event) -> {
             errItemId.setText("");
         });
-        
+
         value.setOnKeyReleased((event) -> {
             errValue.setText("");
             errRemainder.setText("");
             remainder.setText(value.getText());
         });
+
+        rate.setOnKeyPressed((event) ->{
+            errRate.setText("");
+        });
         
         remainder.setOnKeyReleased((event) -> {
             errRemainder.setText("");
         });
-        
+
         dueDate.setOnAction((event) -> {
             errDueDate.setText("");
         });
-        
+
         customerNic.setOnKeyReleased((event) -> {
             errCustomerNic.setText("");
         });
     }
-    
+
     @FXML
     void actionSave(ActionEvent event) {
         loan = new Loan();
-        
+
         if (value.getText().isEmpty()) {
             errValue.setText("Value cannot be empty.");
+        }
+        if(rate.getText().isEmpty()){
+            errRate.setText("Rate cannot be empty.");
         }
         if (remainder.getText().isEmpty()) {
             errRemainder.setText("Remainder cannot be empty.");
@@ -128,24 +143,42 @@ public class SaveLoanFXMLController implements Initializable {
         if (itemId.getText().isEmpty()) {
             errItemId.setText("Item Id cannot be empty.");
         }
+        
+        if(rate.getText().isEmpty()){
+            errRate.setText("Rate cannot be empty.");
+        }
+        
         try {
+            
             loan.setValue(Double.parseDouble(value.getText()));
-            loan.setRemainder(Double.parseDouble(remainder.getText()));
+            loan.setRate(Float.parseFloat(rate.getText()));
+            loan.setRemainder(remaining());
             loan.setDuedate(Date.valueOf(dueDate.getValue()));
             loan.setBilldate(Date.valueOf(LocalDate.now()));
             loan.setEmpNic(empNic.getText());
             loan.setCustomerNic(customerNic.getText());
             loan.setItemId(Integer.parseInt(itemId.getText()));
-            
+
             loanDAO.saveLoan(loan);
             ViewItemsFXMLController.stage.close();
         } catch (NumberFormatException ex) {
-            errValue.setText("Please enter a number.");
+            ex.printStackTrace();
         }
     }
-    
+
     @FXML
     void actionInput(KeyEvent event) {
         remainder.setText(value.getText());
+    }
+    
+    private Double remaining(){
+        double amount = 0;
+        
+        if(!rate.getText().isEmpty() && !value.getText().isEmpty()){
+            amount = Double.parseDouble(value.getText()) * Float.parseFloat(rate.getText()) /100;
+            amount = amount + Double.parseDouble(value.getText());
+        }
+        
+        return amount;
     }
 }

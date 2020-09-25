@@ -14,6 +14,7 @@ public class Loan {
 
     private int loanId;
     private Double value;
+    private float rate;
     private Double remainder;
     private Date duedate;
     private Date billdate;
@@ -21,9 +22,10 @@ public class Loan {
     private int itemId;
     private String customerNic;
 
-    public Loan(int loanId, Double value, Double remainder, Date duedate, Date billdate, String empNic, int itemId, String customerNic) {
+    public Loan(int loanId, Double value, float rate, Double remainder, Date duedate, Date billdate, String empNic, int itemId, String customerNic) {
         this.loanId = loanId;
         this.value = value;
+        this.rate = rate;
         this.remainder = remainder;
         this.duedate = duedate;
         this.billdate = billdate;
@@ -97,6 +99,14 @@ public class Loan {
 
     public void setCustomerNic(String customerNic) {
         this.customerNic = customerNic;
+    }
+
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 
 }

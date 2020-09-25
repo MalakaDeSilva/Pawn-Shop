@@ -13,6 +13,7 @@ import com.pawnshop.customermgmt.model.Customer;
 import com.pawnshop.itemmgmt.view.ViewItemsFXMLController;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -137,8 +138,14 @@ public class ViewCustomerFXMLController implements Initializable {
     }
 
     private List<Customer> getCustomers() {
-        List<Customer> list = customerDAO.getAllCustomers();
-
+        List<Customer> list = new ArrayList<>();
+        
+        for(Customer customer: customerDAO.getAllCustomers()){
+            if(!customer.deleted()){
+                list.add(customer);
+            }
+        }
+        
         return list;
     }
 

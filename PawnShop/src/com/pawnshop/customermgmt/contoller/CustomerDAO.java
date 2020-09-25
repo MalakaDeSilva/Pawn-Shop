@@ -31,6 +31,7 @@ public class CustomerDAO implements ICustomerDAO {
             prepS.setString(3, customer.getAddress());
             prepS.setInt(4, customer.getContactNo());
             prepS.setString(5, customer.getEmail());
+            prepS.setInt(6, 0);
 
             prepS.executeUpdate();
         } catch (SQLException ex) {
@@ -62,6 +63,11 @@ public class CustomerDAO implements ICustomerDAO {
                 customer.setContactNo(resS.getInt("contact_no"));
                 customer.setName(resS.getString("name"));
                 customer.setEmail(resS.getString("email"));
+                if (resS.getInt("deleted") == 1) {
+                    customer.setDeleted(true);
+                } else if (resS.getInt("deleted") == 0) {
+                    customer.setDeleted(false);
+                }
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -89,7 +95,7 @@ public class CustomerDAO implements ICustomerDAO {
             prepS.setInt(3, customer.getContactNo());
             prepS.setString(4, customer.getEmail());
             prepS.setString(5, customer.getNic());
-            
+
             prepS.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -114,7 +120,8 @@ public class CustomerDAO implements ICustomerDAO {
 
             prepS = connection.prepareStatement(Constants.DELETE_CUSTOMER);
 
-            prepS.setString(1, nic);
+            prepS.setInt(1, 1);
+            prepS.setString(2, nic);
 
             prepS.executeUpdate();
         } catch (SQLException ex) {
@@ -140,6 +147,11 @@ public class CustomerDAO implements ICustomerDAO {
                 customer.setContactNo(resS.getInt("contact_no"));
                 customer.setName(resS.getString("name"));
                 customer.setEmail(resS.getString("email"));
+                if (resS.getInt("deleted") == 1) {
+                    customer.setDeleted(true);
+                } else if (resS.getInt("deleted") == 0) {
+                    customer.setDeleted(false);
+                }
 
                 list.add(customer);
             }

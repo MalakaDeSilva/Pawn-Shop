@@ -14,7 +14,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -26,52 +25,61 @@ import javafx.scene.text.Text;
  *
  */
 public class SaveItemFXMLController implements Initializable {
-    
+
     @FXML
     private TextField itemType;
-    
+
     @FXML
     private TextField weight;
-    
+
     @FXML
     private TextField value;
-    
+
     @FXML
     private ComboBox<String> status;
-    
+
+    @FXML
+    private ComboBox<Integer> karat;
+
     @FXML
     private TextArea description;
-    
+
     @FXML
     private TextField nic;
-    
-    @FXML
-    private Button btnSave;
-    
+
     @FXML
     private Pane splitPane;
-    
+
     @FXML
     private Text errItemType;
-    
+
     @FXML
     private Text errWeight;
-    
+
     @FXML
-    private Text errValue;
-    
+    private Text errKarat;
+
     @FXML
     private Text errStatus;
-    
+
     @FXML
     private Text errDescription;
-    
+
     @FXML
     private Text errCustomerNic;
-    
+
     @FXML
     void actionSave(ActionEvent event) {
         saveItem();
+    }
+
+    @FXML
+    void actionAssess(ActionEvent event) {
+        if (weight.getText() == null || weight.getText().isEmpty()) {
+            errWeight.setText("Enter a weight.");
+        } else {
+            value.setText(String.valueOf(value()));
+        }
     }
 
     /**
@@ -86,71 +94,90 @@ public class SaveItemFXMLController implements Initializable {
         status.getItems().add("Acquired");
         status.getItems().add("To be sold");
         status.setValue("Pawned");
-        
+
+        karat.getItems().add(18);
+        karat.getItems().add(21);
+        karat.getItems().add(22);
+        karat.setValue(18);
+
         itemType.setOnKeyReleased((event) -> {
             errItemType.setText("");
         });
-        
+
         weight.setOnKeyReleased((event) -> {
             errWeight.setText("");
         });
-        
-        value.setOnKeyReleased((event) -> {
-            errValue.setText("");
-        });
-        
+
         status.setOnAction((event) -> {
             errStatus.setText("");
         });
-        
+
+        karat.setOnAction((event) -> {
+            errKarat.setText("");
+        });
+
         nic.setOnKeyReleased((event) -> {
             errCustomerNic.setText("");
         });
-        
+
         description.setOnKeyReleased((event) -> {
             errDescription.setText("");
         });
+
     }
-    
+
     private void saveItem() {
         Item item = new Item();
         IItemDAO itemDAO = new ItemDAO();
-        
+
         if (itemType.getText().isEmpty()) {
             errItemType.setText("Item type cannot be empty.");
         }
         if (weight.getText().isEmpty()) {
             errWeight.setText("Weight cannot be empty.");
         }
-        if (value.getText().isEmpty()) {
-            errValue.setText("Value cannot be empty.");
-        }
         if (status.getValue().isEmpty()) {
             errStatus.setText("Status cannot be empty.");
         }
+
+        if (!(karat.getValue() == 18) || !(karat.getValue() == 22) || !(karat.getValue() == 24)) {
+            errKarat.setText("Karat cannot be empty.");
+        }
+
         if (description.getText().isEmpty()) {
             errDescription.setText("Description cannot be empty.");
         }
-        
+
         if (nic.getText().isEmpty()) {
             errCustomerNic.setText("Customer NIC cannot be empty.");
         }
-        
+
         try {
             item.setItemType(itemType.getText());
             item.setWeight(Double.parseDouble(weight.getText()));
             item.setValue(Float.parseFloat(value.getText()));
             item.setStatus((String) status.getValue());
+            item.setKarat(karat.getValue());
             item.setDescription(description.getText());
             item.setNic(nic.getText());
-            
+
             if (Validator.validate(item)) {
                 itemDAO.saveItem(item);
                 ViewItemsFXMLController.stage.close();
             }
         } catch (NumberFormatException ex) {
-            
+
         }
     }
-    
+
+    private float value() {
+        float price = 0;
+        if (karat.getValue() == 21 || karat.getValue() == 22) {
+            price = 65000 / 8 * Float.parseFloat(weight.getText());
+        } else if (karat.getValue() == 18) {
+            price = 5000 * Float.parseFloat(weight.getText());
+        }
+        return price;
+    }
+
 }

@@ -10,6 +10,7 @@ public class Item {
     private int itemId;
     private String itemType;
     private double weight;
+    private int karat;
     private float value;
     private String status;
     private String description;
@@ -18,7 +19,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(int itemId, String itemType, double weight, float value, String status, String description, String nic) {
+    public Item(int itemId, String itemType, double weight, float value, String status, String description, String nic, int karat) {
         this.itemId = itemId;
         this.itemType = itemType;
         this.weight = weight;
@@ -26,6 +27,7 @@ public class Item {
         this.status = status;
         this.description = description;
         this.nic = nic;
+        this.karat = karat;
     }
 
     public int getItemId() {
@@ -82,6 +84,14 @@ public class Item {
 
     public void setNic(String nic) {
         this.nic = nic;
+    }
+
+    public int getKarat() {
+        return karat;
+    }
+
+    public void setKarat(int karat) {
+        this.karat = karat;
     }
 
 }
