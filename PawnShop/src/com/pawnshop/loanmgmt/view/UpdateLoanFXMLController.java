@@ -64,6 +64,11 @@ public class UpdateLoanFXMLController implements Initializable {
     private TextField customerNic;
 
     @FXML
+    private TextField rate;
+
+    @FXML
+    private Text errRate;
+    @FXML
     private Text errCustomerNic;
 
     @FXML
@@ -77,22 +82,25 @@ public class UpdateLoanFXMLController implements Initializable {
     @FXML
     void actionUpdate(ActionEvent event) {
         Loan loan = new Loan();
-        setErrors();
-        try {
-            loan.setLoanId(prevLoan.getLoanId());
-            loan.setValue(Double.parseDouble(value.getText()));
-            loan.setRemainder(Double.parseDouble(remainder.getText()));
-            loan.setDuedate(Date.valueOf(dueDate.getValue()));
-            loan.setBilldate(Date.valueOf(LocalDate.now()));
-            loan.setEmpNic(empNic.getText());
-            loan.setCustomerNic(customerNic.getText());
-            loan.setItemId(Integer.parseInt(itemId.getText()));
+        if(!setErrors()){
+            try {
+                loan.setLoanId(prevLoan.getLoanId());
+                loan.setValue(Double.parseDouble(value.getText()));
+                loan.setRate(Float.parseFloat(rate.getText()));
+                loan.setRemainder(remaining());
+                loan.setDuedate(Date.valueOf(dueDate.getValue()));
+                loan.setBilldate(Date.valueOf(LocalDate.now()));
+                loan.setEmpNic(empNic.getText());
+                loan.setCustomerNic(customerNic.getText());
+                loan.setItemId(Integer.parseInt(itemId.getText()));
 
-            loanDAO.updateLoan(loan);
-            ViewLoansFXMLController.stage.close();
-        } catch (NumberFormatException ex) {
-            errValue.setText("Please enter a number.");
+                loanDAO.updateLoan(loan);
+                ViewLoansFXMLController.stage.close();
+            } catch (NumberFormatException ex) {
+                errValue.setText("Please enter a number.");
+            }
         }
+        
     }
 
     /**
@@ -107,20 +115,30 @@ public class UpdateLoanFXMLController implements Initializable {
         clearErrors();
     }
 
-    private void setErrors() {
+    private boolean setErrors() {
+        boolean errors = false;
         if (remainder.getText().isEmpty()) {
+            errors = true;
             errRemainder.setText("Remainder cannot be empty.");
         }
         if (dueDate.getValue() == null) {
+            errors = true;
             errDueDate.setText("Due date cannot be empty.");
         }
         if (customerNic.getText().isEmpty()) {
+            errors = true;
             errCustomerNic.setText("Customer NIC cannot be empty.");
         }
         if (itemId.getText().isEmpty()) {
+            errors = true;
             errItemId.setText("Item Id cannot be empty.");
         }
-
+        if (rate.getText().isEmpty()) {
+            errors = true;
+            errRate.setText("Rate cannot be empty.");
+        }
+        
+        return errors;
     }
 
     private void clearErrors() {
@@ -153,16 +171,31 @@ public class UpdateLoanFXMLController implements Initializable {
         customerNic.setOnKeyReleased((event) -> {
             errCustomerNic.setText("");
         });
+        rate.setOnKeyPressed((event) -> {
+            errRate.setText("");
+        });
 
     }
 
     private void init() {
         itemId.setText(String.valueOf(prevLoan.getItemId()));
         value.setText(String.valueOf(prevLoan.getValue()));
+        rate.setText(String.valueOf(prevLoan.getRate()));
         remainder.setText(String.valueOf(prevLoan.getRemainder()));
         dueDate.setValue(prevLoan.getDuedate().toLocalDate());
         billDate.setValue(prevLoan.getBilldate().toLocalDate());
         empNic.setText(prevLoan.getEmpNic());
         customerNic.setText(prevLoan.getCustomerNic());
+    }
+
+    private Double remaining() {
+        double amount = 0;
+
+        if (!rate.getText().isEmpty() && !value.getText().isEmpty()) {
+            amount = Double.parseDouble(value.getText()) * Float.parseFloat(rate.getText()) / 100;
+            amount = amount + Double.parseDouble(value.getText());
+        }
+
+        return amount;
     }
 }

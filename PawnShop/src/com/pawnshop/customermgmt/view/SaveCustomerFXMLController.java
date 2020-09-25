@@ -110,7 +110,7 @@ public class SaveCustomerFXMLController implements Initializable {
         }
 
         try {
-            Customer customer = new Customer(nic.getText(), name.getText(), address.getText(), Integer.parseInt(contactNo.getText()), email.getText());
+            Customer customer = new Customer(nic.getText(), name.getText(), address.getText(), Integer.parseInt(contactNo.getText()), email.getText(), false);
             if (Validator.validate(customer)) {
                 custDAO.saveCustomer(customer);
                 ViewCustomerFXMLController.stage.close();

@@ -108,7 +108,7 @@ public class UpdateCustomerFXMLController implements Initializable {
         }
 
         try {
-            Customer updatedCustomer = new Customer(nic.getText(), name.getText(), address.getText(), Integer.parseInt(contactNo.getText()), email.getText());
+            Customer updatedCustomer = new Customer(nic.getText(), name.getText(), address.getText(), Integer.parseInt(contactNo.getText()), email.getText(), false);
             if (Validator.validate(updatedCustomer)) {
                 customerDAO.updateCustomer(updatedCustomer);
                 ViewCustomerFXMLController.stage.close();

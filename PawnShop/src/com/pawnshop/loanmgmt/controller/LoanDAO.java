@@ -34,12 +34,13 @@ public class LoanDAO implements ILoanDAO {
             prepS = connection.prepareStatement(Constants.ADD_LOAN);
 
             prepS.setDouble(1, loan.getValue());
-            prepS.setDouble(2, loan.getRemainder());
-            prepS.setDate(3, loan.getDuedate());
-            prepS.setDate(4, loan.getBilldate());
-            prepS.setString(5, loan.getEmpNic());
-            prepS.setString(6, loan.getCustomerNic());
-            prepS.setInt(7, loan.getItemId());
+            prepS.setFloat(2, loan.getRate());
+            prepS.setDouble(3, loan.getRemainder());
+            prepS.setDate(4, loan.getDuedate());
+            prepS.setDate(5, loan.getBilldate());
+            prepS.setString(6, loan.getEmpNic());
+            prepS.setString(7, loan.getCustomerNic());
+            prepS.setInt(8, loan.getItemId());
 
             prepS.executeUpdate();
         } catch (SQLException ex) {
@@ -91,6 +92,7 @@ public class LoanDAO implements ILoanDAO {
 
                 loan.setLoanId(resS.getInt("loan_id"));
                 loan.setValue(resS.getDouble("value"));
+                loan.setRate(resS.getFloat("rate"));
                 loan.setRemainder(resS.getDouble("remainder"));
                 loan.setDuedate(resS.getDate("duedate"));
                 loan.setBilldate(resS.getDate("billdate"));
@@ -121,9 +123,11 @@ public class LoanDAO implements ILoanDAO {
         try {
             prepS = connection.prepareStatement(Constants.UPDATE_LOAN);
 
-            prepS.setDouble(1, loan.getRemainder());
-            prepS.setString(2, loan.getCustomerNic());
-            prepS.setInt(3, loan.getLoanId());
+            prepS.setDouble(1, loan.getValue());
+            prepS.setFloat(2, loan.getRate());
+            prepS.setDouble(3, loan.getRemainder());
+            prepS.setDate(4, loan.getDuedate());
+            prepS.setInt(5, loan.getLoanId());
 
             prepS.executeUpdate();
         } catch (SQLException ex) {
@@ -138,4 +142,28 @@ public class LoanDAO implements ILoanDAO {
         }
     }
 
+    @Override
+    public void updateLoanPayment(int loanId, double amount) {
+        connection = DBConnection.getConnection();
+
+        try {
+            prepS = connection.prepareStatement(Constants.UPDATE_LOAN_PAYMENT);
+
+            prepS.setDouble(1, amount);
+            prepS.setInt(2, loanId);
+
+            prepS.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(LoanDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                prepS.close();
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoanDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    
 }

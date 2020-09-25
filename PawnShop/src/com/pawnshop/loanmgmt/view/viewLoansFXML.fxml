@@ -14,7 +14,7 @@
    <children>
       <SplitPane dividerPositions="0.14912280701754385" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
-            <AnchorPane maxHeight="160.0" maxWidth="1.7976931348623157E308" prefHeight="160.0">
+            <AnchorPane maxHeight="161.0" maxWidth="1.7976931348623157E308" prefHeight="161.0">
                <children>
                   <ImageView fitHeight="161.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="838.0" AnchorPane.topAnchor="0.0">
                      <image>
@@ -23,14 +23,15 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="998.0">
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="998.0">
                <children>
-                  <TableView fx:id="table" layoutX="51.0" layoutY="50.0" prefHeight="357.0" prefWidth="895.0" tableMenuButtonVisible="true" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="50.0">
+                  <TableView fx:id="table" layoutX="51.0" layoutY="50.0" prefHeight="357.0" prefWidth="895.0" tableMenuButtonVisible="true" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="50.0">
                      <columns>
                         <TableColumn fx:id="colLoanId" prefWidth="72.0" text="Loan Id" />
                         <TableColumn fx:id="colItemId" prefWidth="75.0" text="Item Id" />
-                        <TableColumn fx:id="colAmount" prefWidth="109.0" text="Amount" />
-                        <TableColumn fx:id="colRemain" prefWidth="122.0" text="Remaining" />
+                        <TableColumn fx:id="colRate" prefWidth="75.0" text="Rate (%)" />
+                        <TableColumn fx:id="colAmount" prefWidth="109.0" text="Amount  (Rs.)" />
+                        <TableColumn fx:id="colRemain" prefWidth="122.0" text="Remaining  (Rs.)" />
                         <TableColumn fx:id="colDueDate" prefWidth="90.0" text="Due Date" />
                         <TableColumn fx:id="colBillDate" prefWidth="108.0" text="Bill Date" />
                         <TableColumn fx:id="colEmpNic" prefWidth="167.0" text="Authorized by" />

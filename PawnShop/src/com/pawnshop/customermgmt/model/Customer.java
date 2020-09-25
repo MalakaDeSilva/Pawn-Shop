@@ -12,13 +12,15 @@ public class Customer {
     private String address;
     private int contactNo;
     private String email;
+    private boolean deleted;
 
-    public Customer(String nic, String name, String address, int contactNo, String email) {
+    public Customer(String nic, String name, String address, int contactNo, String email, boolean deleted) {
         this.nic = nic;
         this.name = name;
         this.address = address;
         this.contactNo = contactNo;
         this.email = email;
+        this.deleted = deleted;
     }
 
     public Customer() {
@@ -62,6 +64,14 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean deleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
 }

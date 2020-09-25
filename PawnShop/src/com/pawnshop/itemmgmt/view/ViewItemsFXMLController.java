@@ -58,6 +58,9 @@ public class ViewItemsFXMLController implements Initializable {
     private TableColumn<Item, Double> colWeight;
 
     @FXML
+    private TableColumn<Item, Integer> colKarat;
+
+    @FXML
     private TableColumn<Item, Float> colValue;
 
     @FXML
@@ -80,6 +83,7 @@ public class ViewItemsFXMLController implements Initializable {
         colItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         colItemType.setCellValueFactory(new PropertyValueFactory<>("itemType"));
         colWeight.setCellValueFactory(new PropertyValueFactory<>("weight"));
+        colKarat.setCellValueFactory(new PropertyValueFactory<>("karat"));
         colValue.setCellValueFactory(new PropertyValueFactory<>("value"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -141,6 +145,7 @@ public class ViewItemsFXMLController implements Initializable {
         colItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         colItemType.setCellValueFactory(new PropertyValueFactory<>("itemType"));
         colWeight.setCellValueFactory(new PropertyValueFactory<>("weight"));
+        colKarat.setCellValueFactory(new PropertyValueFactory<>("karat"));
         colValue.setCellValueFactory(new PropertyValueFactory<>("value"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));

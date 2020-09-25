@@ -43,6 +43,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <AnchorPane prefHeight="69.0" prefWidth="478.0">
@@ -53,7 +54,7 @@
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
                               <TextField fx:id="itemType" layoutX="10.0" layoutY="19.0" prefWidth="350.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="10.0" />
-                              <Text fx:id="errItemType" fill="RED" layoutX="10.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <Text fx:id="errItemType" fill="RED" layoutX="367.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -63,61 +64,88 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <TextField fx:id="weight" layoutX="10.0" layoutY="25.0" prefWidth="350.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
-                              <Text fx:id="errWeight" fill="RED" layoutX="10.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <TextField fx:id="weight" layoutX="43.0" layoutY="25.0" prefHeight="25.0" prefWidth="316.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="43.0" AnchorPane.topAnchor="25.0" />
+                              <Text fx:id="errWeight" fill="RED" layoutX="366.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <Text fx:id="errWeight1" layoutX="20.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="g">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <children>
-                              <Text layoutX="455.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Value" AnchorPane.bottomAnchor="21.02734375" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="28.01171875" />
+                              <Text layoutX="363.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Karat" AnchorPane.rightAnchor="10.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
-                              <TextField fx:id="value" layoutX="10.0" layoutY="25.0" prefWidth="350.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
-                              <Text fx:id="errValue" fill="RED" layoutX="10.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <ComboBox fx:id="karat" layoutX="44.0" layoutY="12.0" prefHeight="25.0" prefWidth="316.0" AnchorPane.leftAnchor="40.0" />
+                              <Text fx:id="errKarat" fill="RED" layoutX="367.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <Text layoutX="14.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kt">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                            <children>
-                              <Text layoutX="452.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" AnchorPane.bottomAnchor="21.02734375" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="28.01171875" />
+                              <Text layoutX="356.25" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Value" AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="14.21875" AnchorPane.topAnchor="18.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
-                              <ComboBox fx:id="status" layoutX="14.0" layoutY="24.0" prefWidth="350.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="24.0" />
-                              <Text fx:id="errStatus" fill="RED" layoutX="9.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <TextField fx:id="value" layoutX="40.0" layoutY="15.0" prefHeight="25.0" prefWidth="316.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="15.0" />
+                              <Text fx:id="errValue1" layoutX="10.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rs." AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Text>
+                              <Button layoutX="367.0" layoutY="15.0" mnemonicParsing="false" onAction="#actionAssess" text="Assess" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
                            <children>
-                              <Text layoutX="424.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" AnchorPane.bottomAnchor="21.02734375" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="28.01171875" />
+                              <Text layoutX="348.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" AnchorPane.bottomAnchor="33.98828125" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
-                              <TextArea fx:id="description" layoutY="13.0" prefHeight="55.0" prefWidth="350.0" promptText="Brief description about the item ..." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="11.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </TextArea>
-                              <Text fx:id="errDescription" fill="RED" layoutX="9.0" layoutY="7.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <ComboBox fx:id="status" layoutX="-136.0" layoutY="13.0" prefHeight="25.0" prefWidth="350.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="4.0" />
+                              <Text fx:id="errStatus" fill="RED" layoutX="367.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
                            <children>
-                              <Text layoutX="418.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer NIC" AnchorPane.bottomAnchor="19.98828125" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="28.01171875" />
+                              <Text layoutX="339.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" AnchorPane.bottomAnchor="45.98828125" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="28.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <children>
-                              <TextField fx:id="nic" layoutY="25.0" prefWidth="350.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
-                              <Text fx:id="errCustomerNic" fill="RED" layoutX="10.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <TextArea fx:id="description" layoutX="-109.0" layoutY="-13.0" prefHeight="55.0" prefWidth="350.0" promptText="Brief description about the item ..." AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
+                              <Text fx:id="errDescription" fill="RED" layoutX="368.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="368.0" AnchorPane.topAnchor="19.05078125" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6">
+                           <children>
+                              <Text layoutX="320.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer NIC" AnchorPane.bottomAnchor="32.98828125" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="23.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <children>
-                              <Button fx:id="btnSave" maxHeight="25.0" maxWidth="134.0" mnemonicParsing="false" onAction="#actionSave" prefHeight="25.0" prefWidth="134.0" text="Save" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0">
+                              <TextField fx:id="nic" layoutX="-91.0" layoutY="14.0" prefWidth="350.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="14.0" />
+                              <Text fx:id="errCustomerNic" fill="RED" layoutX="366.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="366.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="7" />
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <children>
+                              <Button fx:id="btnSave" layoutX="2.0" layoutY="8.0" maxHeight="25.0" maxWidth="134.0" mnemonicParsing="false" onAction="#actionSave" prefHeight="25.0" prefWidth="134.0" text="Save" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="8.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>

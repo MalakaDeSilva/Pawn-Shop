@@ -7,14 +7,11 @@ package com.pawnshop.paymgmt.view;
 
 import com.pawnshop.loanmgmt.controller.ILoanDAO;
 import com.pawnshop.loanmgmt.controller.LoanDAO;
-import com.pawnshop.loanmgmt.model.Loan;
 import com.pawnshop.loanmgmt.view.ViewLoansFXMLController;
 import com.pawnshop.paymgmt.controller.IPayDAO;
 import com.pawnshop.paymgmt.controller.PayDAO;
 import com.pawnshop.paymgmt.model.Payment;
 import java.net.URL;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,11 +25,9 @@ import javafx.scene.text.Text;
  * FXML Controller class
  *
  */
-public class RecordPaymentFXMLController implements Initializable {
+public class UpdatePaymentFXMLController implements Initializable {
 
-    Loan loan = ViewLoansFXMLController.loan;
-    IPayDAO payDAO = new PayDAO();
-    ILoanDAO loanDAO = new LoanDAO();
+    Payment prevPayment = ViewPaymentsFXMLController.payment;
 
     @FXML
     private ComboBox<String> type;
@@ -58,6 +53,13 @@ public class RecordPaymentFXMLController implements Initializable {
     @FXML
     private Text errAmount;
 
+    @FXML
+    void actionUpdate(ActionEvent event) {
+        if (!setErrors()) {
+            updatePayment();
+        }
+    }
+
     /**
      * Initializes the controller class.
      *
@@ -66,35 +68,33 @@ public class RecordPaymentFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        type.getItems().add("Installments");
-        type.getItems().add("Loan Recovery");
-
-        payDate.setValue(LocalDate.now());
-        if (loan != null) {
-            customer.setText(loan.getCustomerNic());
-            empNic.setText(loan.getEmpNic());
-            loanId.setText(String.valueOf(loan.getLoanId()));
-        }
-
+        init();
+                
         clearErrors();
     }
 
-    @FXML
-    void actionSave(ActionEvent event) {
-        if (!setErrors()) {
-            Payment payment = new Payment();
-            payment.setPaymentType(type.getValue());
-            payment.setAmount(Double.parseDouble(amount.getText()));
-            payment.setEmpNic(empNic.getText());
-            payment.setCustNic(customer.getText());
-            payment.setLoanId(Integer.parseInt(loanId.getText()));
-            payment.setPaymentDate(Date.valueOf(LocalDate.now()));
-            payDAO.recordPayment(payment);
+    private void init() {
+        type.setValue(prevPayment.getPaymentType());
+        amount.setText(String.valueOf(prevPayment.getAmount()));
+        customer.setText(prevPayment.getCustNic());
+        empNic.setText(prevPayment.getEmpNic());
+        loanId.setText(String.valueOf(prevPayment.getLoanId()));
+        payDate.setValue(prevPayment.getPaymentDate().toLocalDate());
 
-            double remainder = loan.getRemainder() - Double.parseDouble(amount.getText());
-            loanDAO.updateLoanPayment(Integer.parseInt(loanId.getText()), remainder);
-            ViewLoansFXMLController.stage.close();
-        }
+    }
+
+    private void updatePayment() {
+        Payment payment = new Payment();
+        IPayDAO paymentDAO = new PayDAO();
+
+        payment.setPaymentId(prevPayment.getPaymentId());
+        payment.setPaymentType(type.getValue());
+        payment.setAmount(Double.parseDouble(amount.getText()));
+        payment.setEmpNic(empNic.getText());
+
+        paymentDAO.updatePayment(payment);
+        recheckLoan();
+        ViewPaymentsFXMLController.stage.close();
     }
 
     private boolean setErrors() {
@@ -110,7 +110,7 @@ public class RecordPaymentFXMLController implements Initializable {
                 errType.setText("Please choose a payment type.");
             }
             if (type.getValue().equals("Loan Recovery")) {
-                if (loan.getRemainder() > Double.parseDouble(amount.getText())) {
+                if (ViewLoansFXMLController.loan.getRemainder() > Double.parseDouble(amount.getText())) {
                     errors = true;
                     errAmount.setText("To recover the loan, full amount must be paid.");
                 }
@@ -120,14 +120,31 @@ public class RecordPaymentFXMLController implements Initializable {
         }
         return errors;
     }
-
-    private void clearErrors() {
-        amount.setOnKeyReleased((event) -> {
+    
+    private void clearErrors(){
+        amount.setOnKeyReleased((event)->{
             errAmount.setText("");
         });
-
-        type.setOnAction((event) -> {
+        
+        type.setOnAction((event)->{
             errType.setText("");
         });
+    }
+
+    private void recheckLoan() {
+        ILoanDAO loanDAO = new LoanDAO();
+        double remaining = ViewPaymentsFXMLController.loan.getRemainder();
+        double prevAmount = prevPayment.getAmount();
+        double newAmount = Double.parseDouble(amount.getText());
+
+        double newRemaining = remaining;
+
+        if (newAmount > prevAmount) {
+            newRemaining = remaining - (newAmount - prevAmount);
+        } else if (newAmount < prevAmount) {
+            newRemaining = remaining + (prevAmount - newAmount);
+        }
+
+        loanDAO.updateLoanPayment(ViewPaymentsFXMLController.loan.getLoanId(), newRemaining);
     }
 }

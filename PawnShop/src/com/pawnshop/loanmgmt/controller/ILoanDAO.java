@@ -16,4 +16,5 @@ public interface ILoanDAO {
     void deleteLoan(int loanId);
     List<Loan> getAllLoans();
     void updateLoan(Loan loan);
+    void updateLoanPayment(int loanId, double amount);
 }
