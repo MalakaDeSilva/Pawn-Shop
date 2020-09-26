@@ -96,6 +96,7 @@ public class UpdateItemFXMLController implements Initializable {
         init(); // set previous values to fields
 
         status.getItems().add("Pawned");
+        status.getItems().add("Recovered");
         status.getItems().add("Acquired");
         status.getItems().add("To be sold");
 

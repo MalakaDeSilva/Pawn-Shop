@@ -11,6 +11,7 @@ import com.pawnshop.customermgmt.contoller.CustomerDAO;
 import com.pawnshop.customermgmt.contoller.ICustomerDAO;
 import com.pawnshop.customermgmt.model.Customer;
 import com.pawnshop.itemmgmt.view.ViewItemsFXMLController;
+import com.pawnshop.util.Report;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -65,8 +66,25 @@ public class ViewCustomerFXMLController implements Initializable {
 
     @FXML
     private TableColumn<Customer, String> colAddress;
+
     @FXML
     private Button btnNewCust;
+
+    @FXML
+    void genCustomers(ActionEvent event) {
+        String query = "SELECT * FROM customers";
+        String filePath = "src/com/pawnshop/customermgmt/report/customer_list.jrxml";
+        Report report = new Report();
+        report.generateReport(query, filePath);
+    }
+
+    @FXML
+    void genDeleteCustomers(ActionEvent event) {
+        String query = "SELECT * FROM customers WHERE deleted = 1";
+        String filePath = "src/com/pawnshop/customermgmt/report/deleted_customers_list.jrxml";
+        Report report = new Report();
+        report.generateReport(query, filePath);
+    }
 
     /**
      * Initializes the controller class.
@@ -139,13 +157,13 @@ public class ViewCustomerFXMLController implements Initializable {
 
     private List<Customer> getCustomers() {
         List<Customer> list = new ArrayList<>();
-        
-        for(Customer customer: customerDAO.getAllCustomers()){
-            if(!customer.deleted()){
+
+        for (Customer customer : customerDAO.getAllCustomers()) {
+            if (!customer.deleted()) {
                 list.add(customer);
             }
         }
-        
+
         return list;
     }
 
@@ -168,7 +186,8 @@ public class ViewCustomerFXMLController implements Initializable {
 
             Scene scene = new Scene(updateCustomer);
             stage = new Stage();
-            stage.setTitle(Constants.ADD_CUSTOMER_TITLE);
+            stage.setTitle("Update Customer");
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
             stage.setOnHiding((WindowEvent we) -> refresh());
@@ -184,6 +203,8 @@ public class ViewCustomerFXMLController implements Initializable {
             Scene scene = new Scene(addCustomer);
             stage = new Stage();
             stage.setScene(scene);
+            stage.setTitle("New Customer");
+            stage.setResizable(false);
             stage.show();
             stage.setOnHiding((WindowEvent we) -> refresh());
         } catch (IOException ex) {

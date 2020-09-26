@@ -3,11 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,110 +12,96 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pawnshop.customermgmt.view.UpdateCustomerFXMLController">
+<AnchorPane id="content" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="508.0" stylesheets="@../../../../stylesheets/styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pawnshop.customermgmt.view.UpdateCustomerFXMLController">
    <children>
-      <SplitPane dividerPositions="0.14912280701754385" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <items>
-            <AnchorPane maxHeight="161.0" maxWidth="1.7976931348623157E308" prefHeight="161.0">
+      <GridPane prefHeight="400.0" prefWidth="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="0.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="0.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="200.0">
                <children>
-                  <ImageView fitHeight="161.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="838.0" AnchorPane.topAnchor="0.0">
-                     <image>
-                        <Image url="@../../../../images/pawn.png" />
-                     </image>
-                  </ImageView>
+                  <Text layoutX="465.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC" AnchorPane.rightAnchor="10.0" />
                </children>
             </AnchorPane>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="508.0" prefWidth="998.0">
+            <AnchorPane prefHeight="200.0" GridPane.columnIndex="1">
                <children>
-                  <GridPane prefHeight="400.0" prefWidth="998.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="0.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <AnchorPane prefHeight="200.0">
-                           <children>
-                              <Text layoutX="465.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC" AnchorPane.rightAnchor="10.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" GridPane.columnIndex="1">
-                           <children>
-                              <TextField fx:id="nic" disable="true" editable="false" layoutX="14.0" layoutY="19.0" prefWidth="350.0" AnchorPane.leftAnchor="10.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                           <children>
-                              <Text layoutX="442.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" AnchorPane.rightAnchor="10.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <children>
-                              <TextField fx:id="name" layoutX="14.0" layoutY="30.0" prefWidth="350.0" AnchorPane.leftAnchor="10.0" />
-                              <Text fx:id="nameError" fill="RED" layoutX="15.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="10.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-                           <children>
-                              <Text layoutX="456.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" AnchorPane.rightAnchor="10.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <children>
-                              <TextField fx:id="email" layoutX="14.0" layoutY="30.0" prefWidth="350.0" AnchorPane.leftAnchor="10.0" />
-                              <Text fx:id="emailError" fill="RED" layoutX="15.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="10.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
-                           <children>
-                              <Text layoutX="424.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact No" AnchorPane.rightAnchor="10.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <children>
-                              <TextField fx:id="contactNo" layoutX="14.0" layoutY="30.0" prefWidth="350.0" AnchorPane.leftAnchor="10.0" />
-                              <Text fx:id="contactNoError" fill="RED" layoutX="15.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="10.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
-                           <children>
-                              <Text layoutX="442.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" AnchorPane.rightAnchor="10.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                           <children>
-                              <TextArea fx:id="address" layoutX="14.0" layoutY="22.0" prefHeight="41.0" prefWidth="350.0" AnchorPane.leftAnchor="10.0" />
-                              <Text fx:id="addressError" fill="RED" layoutX="14.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="10.0" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5" />
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                           <children>
-                              <Button fx:id="btnUpdate" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" text="Save" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="20.0">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                     <padding>
-                        <Insets top="30.0" />
-                     </padding>
-                  </GridPane>
+                  <TextField fx:id="nic" disable="true" editable="false" layoutX="14.0" layoutY="19.0" prefWidth="350.0" AnchorPane.leftAnchor="10.0" />
                </children>
             </AnchorPane>
-         </items>
-      </SplitPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Text layoutX="442.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" AnchorPane.rightAnchor="10.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <TextField fx:id="name" layoutX="14.0" layoutY="30.0" prefWidth="350.0" AnchorPane.leftAnchor="10.0" />
+                  <Text fx:id="nameError" fill="RED" layoutX="15.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="10.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+               <children>
+                  <Text layoutX="456.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" AnchorPane.rightAnchor="10.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <TextField fx:id="email" layoutX="14.0" layoutY="30.0" prefWidth="350.0" AnchorPane.leftAnchor="10.0" />
+                  <Text fx:id="emailError" fill="RED" layoutX="15.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="10.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+               <children>
+                  <Text layoutX="424.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact No" AnchorPane.rightAnchor="10.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <TextField fx:id="contactNo" layoutX="14.0" layoutY="30.0" prefWidth="350.0" AnchorPane.leftAnchor="10.0" />
+                  <Text fx:id="contactNoError" fill="RED" layoutX="15.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="10.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+               <children>
+                  <Text layoutX="442.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" AnchorPane.rightAnchor="10.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <TextArea fx:id="address" layoutX="14.0" layoutY="22.0" prefHeight="41.0" prefWidth="350.0" AnchorPane.leftAnchor="10.0" />
+                  <Text fx:id="addressError" fill="RED" layoutX="14.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="10.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <children>
+                  <Button id="button" fx:id="btnUpdate" mnemonicParsing="false" prefHeight="40.0" prefWidth="134.0" stylesheets="@../../../../stylesheets/styles.css" text="Update" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="20.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+         <padding>
+            <Insets top="30.0" />
+         </padding>
+      </GridPane>
    </children>
+   <padding>
+      <Insets bottom="70.0" />
+   </padding>
 </AnchorPane>

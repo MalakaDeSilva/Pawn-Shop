@@ -16,4 +16,5 @@ public interface IEmployeeDAO {
     List<Employee> getAllEmployees();
     void deleteEmployee(String nic);
     void updateEmployee(Employee employee);
+    boolean login(String username, String password);
 }

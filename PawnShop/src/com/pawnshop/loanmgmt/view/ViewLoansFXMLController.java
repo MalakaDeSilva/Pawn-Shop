@@ -12,9 +12,12 @@ import com.pawnshop.itemmgmt.view.ViewItemsFXMLController;
 import com.pawnshop.loanmgmt.controller.ILoanDAO;
 import com.pawnshop.loanmgmt.controller.LoanDAO;
 import com.pawnshop.loanmgmt.model.Loan;
+import com.pawnshop.util.Report;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -35,6 +38,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.exolab.castor.types.DateTime;
 
 /**
  * FXML Controller class
@@ -76,6 +80,28 @@ public class ViewLoansFXMLController implements Initializable {
 
     @FXML
     private TableColumn<Loan, String> colCustomer;
+
+    @FXML
+    void overdueLoan(ActionEvent event) {
+        Date today = Date.valueOf(LocalDate.now());
+        String query = "SELECT * FROM loan WHERE duedate > '" + today + "'";
+        String filePath = "src/com/pawnshop/loanmgmt/report/overdue_loans.jrxml";
+
+        Report report = new Report();
+        report.generateReport(query, filePath);
+    }
+
+    @FXML
+    void monthlyReport(ActionEvent event) {
+        Date startDate = Date.valueOf(LocalDate.of(2020, (Calendar.getInstance().get(Calendar.MONTH)+1), 1));
+        Date endDate = Date.valueOf(LocalDate.of(2020, (Calendar.getInstance().get(Calendar.MONTH)+1), 30));
+        
+        String query = "SELECT * FROM loan WHERE billdate > '" + startDate + "' AND billdate < '"+endDate+"'";
+        String filePath = "src/com/pawnshop/loanmgmt/report/current_month_report.jrxml";
+
+        Report report = new Report();
+        report.generateReport(query, filePath);
+    }
 
     /**
      * Initializes the controller class.
@@ -158,6 +184,8 @@ public class ViewLoansFXMLController implements Initializable {
             Scene scene = new Scene(payments);
             stage = new Stage();
             stage.setScene(scene);
+            stage.setTitle("Payments");
+            stage.setResizable(false);
             stage.show();
             stage.setOnHiding((WindowEvent we) -> refresh());
         } catch (IOException ex) {
@@ -188,6 +216,8 @@ public class ViewLoansFXMLController implements Initializable {
             Scene scene = new Scene(payments);
             stage = new Stage();
             stage.setScene(scene);
+            stage.setTitle("New Payment");
+            stage.setResizable(false);
             stage.show();
             stage.setOnHiding((WindowEvent we) -> refresh());
         } catch (IOException ex) {
@@ -203,7 +233,8 @@ public class ViewLoansFXMLController implements Initializable {
 
             Scene scene = new Scene(updateLoan);
             stage = new Stage();
-            stage.setTitle(Constants.ADD_LOAN_TITLE);
+            stage.setTitle("Update Loan");
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
             stage.setOnHiding((WindowEvent we) -> refresh());

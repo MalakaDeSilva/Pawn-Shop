@@ -5,6 +5,7 @@
  */
 package com.pawnshop.loanmgmt.view;
 
+import com.pawnshop.LoginFXMLController;
 import com.pawnshop.itemmgmt.model.Item;
 import com.pawnshop.itemmgmt.view.ViewItemsFXMLController;
 import com.pawnshop.loanmgmt.controller.ILoanDAO;
@@ -86,7 +87,7 @@ public class SaveLoanFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         billDate.setValue(LocalDate.now());
-        empNic.setText("963374437V");
+        empNic.setText(LoginFXMLController.employee);
         value.setText(String.valueOf(_item.getValue()));
         
         if (_item != null) {

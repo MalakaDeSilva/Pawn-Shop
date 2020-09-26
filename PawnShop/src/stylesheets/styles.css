@@ -1,0 +1,47 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 25, 2020, 9:38:21 PM
+*/
+
+#nav-button {
+    -fx-background-color: #000033;
+    -fx-background-radius: -1;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+}
+
+#nav-bar{
+    -fx-background-color: #000033;
+}
+
+#content{
+    -fx-background-color: white;
+}
+
+#table{
+    
+}
+
+.column-header{
+    -fx-background-color: #000033;
+}
+
+.column-header .text{
+    -fx-fill: white;
+}
+
+.table-row-cell:up 
+{
+    -fx-background-color: #007054; 
+}
+
+#button{
+    -fx-background-color: #000066;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+}
