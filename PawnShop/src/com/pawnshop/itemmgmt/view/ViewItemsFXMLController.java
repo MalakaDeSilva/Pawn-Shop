@@ -10,6 +10,7 @@ import com.pawnshop.constants.Constants;
 import com.pawnshop.itemmgmt.controller.IItemDAO;
 import com.pawnshop.itemmgmt.controller.ItemDAO;
 import com.pawnshop.itemmgmt.model.Item;
+import com.pawnshop.util.Report;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -25,6 +26,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
@@ -71,6 +73,9 @@ public class ViewItemsFXMLController implements Initializable {
 
     @FXML
     private TableColumn<Item, String> colDescription;
+    
+        @FXML
+    private ComboBox<String> status;
 
     /**
      * Initializes the controller class.
@@ -80,6 +85,12 @@ public class ViewItemsFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        status.getItems().add("Pawned");
+        status.getItems().add("Recovered");
+        status.getItems().add("Acquired");
+        status.getItems().add("To be sold");
+        
         colItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         colItemType.setCellValueFactory(new PropertyValueFactory<>("itemType"));
         colWeight.setCellValueFactory(new PropertyValueFactory<>("weight"));
@@ -93,6 +104,16 @@ public class ViewItemsFXMLController implements Initializable {
 
         table.setContextMenu(createContextMenu());
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    }
+    
+    
+    @FXML
+    void generateReport(ActionEvent event) {
+        Report report = new Report();
+        String query = "SELECT * FROM item WHERE status = '" + status.getValue()+"'";
+        String filePath = "src/com/pawnshop/itemmgmt/report/report.jrxml";
+        
+        report.generateReport(query, filePath);
     }
 
     @FXML
@@ -134,6 +155,7 @@ public class ViewItemsFXMLController implements Initializable {
             stage = new Stage();
             stage.setTitle(Constants.ADD_ITEM_TITLE);
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
             stage.setOnHiding((WindowEvent we) -> refresh());
         } catch (IOException ex) {
@@ -160,6 +182,8 @@ public class ViewItemsFXMLController implements Initializable {
             Parent issueLoan = FXMLLoader.load(getClass().getResource("/com/pawnshop/loanmgmt/view/saveLoanFXML.fxml"));
             Scene scene = new Scene(issueLoan);
             stage = new Stage();
+            stage.setTitle("Issue Loan");
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
@@ -215,8 +239,9 @@ public class ViewItemsFXMLController implements Initializable {
 
             Scene scene = new Scene(updateItem);
             stage = new Stage();
-            stage.setTitle(Constants.ADD_ITEM_TITLE);
+            stage.setTitle("Update Item");
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
             stage.setOnHiding((WindowEvent we) -> refresh());
         } catch (IOException ex) {

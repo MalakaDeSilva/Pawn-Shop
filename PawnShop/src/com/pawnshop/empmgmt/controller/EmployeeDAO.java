@@ -131,4 +131,29 @@ public class EmployeeDAO implements IEmployeeDAO {
         }
     }
 
+    @Override
+    public boolean login(String username, String password) {
+        boolean authorized = false;
+        connection = DBConnection.getConnection();
+        
+        try {
+            prepS = connection.prepareStatement("SELECT password FROM employee WHERE nic = ?");
+
+            prepS.setString(1, username);
+
+            resS = prepS.executeQuery();
+            
+            while(resS.next()){
+                if(password.equals(resS.getString("password")))
+                    authorized = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+        return authorized;
+    }
+    
+    
+
 }

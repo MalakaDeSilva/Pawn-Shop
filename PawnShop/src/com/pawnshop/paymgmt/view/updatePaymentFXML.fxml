@@ -4,10 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,159 +12,143 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pawnshop.paymgmt.view.UpdatePaymentFXMLController">
+
+<AnchorPane id="content" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../../../../stylesheets/styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pawnshop.paymgmt.view.UpdatePaymentFXMLController">
    <children>
-      <SplitPane dividerPositions="0.14912280701754385" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <items>
-            <AnchorPane maxHeight="161.0" maxWidth="1.7976931348623157E308" prefHeight="161.0">
+      <GridPane layoutX="14.0" layoutY="8.0" prefHeight="400.0" prefWidth="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="30.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="300.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="161.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="838.0" AnchorPane.topAnchor="0.0">
-                     <image>
-                        <Image url="@../../../../images/pawn.png" />
-                     </image>
-                  </ImageView>
+                  <Text layoutX="363.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Type" AnchorPane.bottomAnchor="32.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="32.5" />
                </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
             </AnchorPane>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="998.0">
+            <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <GridPane layoutX="14.0" layoutY="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="8.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <AnchorPane prefHeight="300.0" prefWidth="200.0">
-                           <children>
-                              <Text layoutX="363.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Type" AnchorPane.bottomAnchor="32.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="32.5" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1">
-                           <children>
-                              <ComboBox fx:id="type" layoutX="-9.0" layoutY="1.0" prefWidth="350.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" />
-                              <Text fx:id="errType" fill="RED" layoutX="10.0" layoutY="7.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.rowIndex="1">
-                           <children>
-                              <Text layoutX="384.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount" AnchorPane.bottomAnchor="32.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="32.5" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <children>
-                              <TextField fx:id="amount" layoutX="-83.0" layoutY="3.0" prefWidth="350.0" AnchorPane.bottomAnchor="12.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="12.5" />
-                              <Text fx:id="errAmount" fill="RED" layoutX="11.0" layoutY="9.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.rowIndex="2">
-                           <children>
-                              <Text layoutX="409.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer" AnchorPane.bottomAnchor="32.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="32.5" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <children>
-                              <TextField fx:id="customer" editable="false" layoutX="-77.0" layoutY="3.0" prefWidth="350.0" AnchorPane.bottomAnchor="12.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="12.5" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.rowIndex="3">
-                           <children>
-                              <Text layoutX="416.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accepted By" AnchorPane.bottomAnchor="32.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="32.5" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <children>
-                              <TextField fx:id="empNic" editable="false" layoutX="-92.0" prefWidth="350.0" AnchorPane.bottomAnchor="12.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="12.5" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.rowIndex="4">
-                           <children>
-                              <Text layoutX="439.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loan Id" AnchorPane.bottomAnchor="32.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="32.5" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                           <children>
-                              <TextField fx:id="loanId" editable="false" layoutX="-74.0" layoutY="-4.0" prefWidth="350.0" AnchorPane.bottomAnchor="12.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="12.5" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.rowIndex="5">
-                           <children>
-                              <Text layoutX="413.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Date" AnchorPane.bottomAnchor="32.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="32.5" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                           <children>
-                              <DatePicker fx:id="payDate" disable="true" editable="false" layoutX="-43.0" layoutY="6.0" prefWidth="350.0" showWeekNumbers="true" AnchorPane.bottomAnchor="12.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="12.5" />
-                           </children>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.rowIndex="6">
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                           <children>
-                              <Button layoutX="5.0" layoutY="4.0" mnemonicParsing="false" onAction="#actionUpdate" prefHeight="25.0" prefWidth="134.0" text="Update" AnchorPane.topAnchor="12.5">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </AnchorPane>
-                     </children>
-                     <padding>
-                        <Insets bottom="50.0" right="100.0" top="30.0" />
-                     </padding>
-                  </GridPane>
+                  <ComboBox fx:id="type" layoutX="-9.0" layoutY="1.0" prefWidth="350.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" />
+                  <Text fx:id="errType" fill="RED" layoutX="10.0" layoutY="7.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
             </AnchorPane>
-         </items>
-      </SplitPane>
+            <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Text layoutX="384.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount" AnchorPane.bottomAnchor="32.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="32.5" />
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </AnchorPane>
+            <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <TextField fx:id="amount" layoutX="-83.0" layoutY="3.0" prefWidth="350.0" AnchorPane.bottomAnchor="12.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="12.5" />
+                  <Text fx:id="errAmount" fill="RED" layoutX="11.0" layoutY="9.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </AnchorPane>
+            <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.rowIndex="2">
+               <children>
+                  <Text layoutX="409.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer" AnchorPane.bottomAnchor="32.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="32.5" />
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </AnchorPane>
+            <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <TextField fx:id="customer" editable="false" layoutX="-77.0" layoutY="3.0" prefWidth="350.0" AnchorPane.bottomAnchor="12.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="12.5" />
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </AnchorPane>
+            <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.rowIndex="3">
+               <children>
+                  <Text layoutX="416.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accepted By" AnchorPane.bottomAnchor="32.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="32.5" />
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </AnchorPane>
+            <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <TextField fx:id="empNic" editable="false" layoutX="-92.0" prefWidth="350.0" AnchorPane.bottomAnchor="12.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="12.5" />
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </AnchorPane>
+            <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.rowIndex="4">
+               <children>
+                  <Text layoutX="439.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loan Id" AnchorPane.bottomAnchor="32.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="32.5" />
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </AnchorPane>
+            <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <TextField fx:id="loanId" editable="false" layoutX="-74.0" layoutY="-4.0" prefWidth="350.0" AnchorPane.bottomAnchor="12.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="12.5" />
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </AnchorPane>
+            <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.rowIndex="5">
+               <children>
+                  <Text layoutX="413.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Date" AnchorPane.bottomAnchor="32.5" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="32.5" />
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </AnchorPane>
+            <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <children>
+                  <DatePicker fx:id="payDate" disable="true" editable="false" layoutX="-43.0" layoutY="6.0" prefWidth="350.0" showWeekNumbers="true" AnchorPane.bottomAnchor="12.5" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="12.5" />
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </AnchorPane>
+            <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </AnchorPane>
+            <AnchorPane prefHeight="300.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <children>
+                  <Button id="button" layoutX="5.0" layoutY="4.0" mnemonicParsing="false" onAction="#actionUpdate" prefHeight="40.0" prefWidth="134.0" stylesheets="@../../../../stylesheets/styles.css" text="Update" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="30.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </AnchorPane>
+         </children>
+      </GridPane>
    </children>
+   <padding>
+      <Insets bottom="70.0" />
+   </padding>
 </AnchorPane>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000033;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pawnshop.LoginFXMLController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="100.0" layoutX="250.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="26.0">
+         <image>
+            <Image url="@../../images/pawn.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="username" layoutX="226.0" layoutY="175.0" prefHeight="25.0" prefWidth="200.0" promptText="Username" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+      <PasswordField fx:id="password" layoutX="226.0" layoutY="230.0" prefHeight="25.0" prefWidth="200.0" promptText="Password" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+      <Button layoutX="270.0" layoutY="279.0" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: blue; -fx-text-fill: white;" text="Login" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="270.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Text fx:id="errUsername" fill="RED" layoutX="226.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="errPassword" fill="RED" layoutX="228.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+   </children>
+</AnchorPane>

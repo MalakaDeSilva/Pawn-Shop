@@ -5,6 +5,7 @@
  */
 package com.pawnshop.loanmgmt.view;
 
+import com.pawnshop.LoginFXMLController;
 import com.pawnshop.loanmgmt.controller.ILoanDAO;
 import com.pawnshop.loanmgmt.controller.LoanDAO;
 import com.pawnshop.loanmgmt.model.Loan;
@@ -143,7 +144,7 @@ public class UpdateLoanFXMLController implements Initializable {
 
     private void clearErrors() {
         billDate.setValue(LocalDate.now());
-        empNic.setText("963374437V");
+        empNic.setText(LoginFXMLController.employee);
 
         itemId.setOnKeyReleased((event) -> {
             errItemId.setText("");

@@ -12,11 +12,13 @@ import com.pawnshop.loanmgmt.view.ViewLoansFXMLController;
 import com.pawnshop.paymgmt.controller.IPayDAO;
 import com.pawnshop.paymgmt.controller.PayDAO;
 import com.pawnshop.paymgmt.model.Payment;
+import com.pawnshop.util.Report;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,6 +26,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
@@ -39,7 +42,7 @@ import javafx.stage.WindowEvent;
 public class ViewPaymentsFXMLController implements Initializable {
 
     Stage parentStage = ViewLoansFXMLController.stage;
-    public static Stage stage; 
+    public static Stage stage;
     IPayDAO payDAO = new PayDAO();
     public static Loan loan = ViewLoansFXMLController.loan;
     public static Payment payment;
@@ -68,6 +71,18 @@ public class ViewPaymentsFXMLController implements Initializable {
     @FXML
     private TableColumn<Payment, Date> colPayDate;
 
+    @FXML
+    private ComboBox<String> type;
+
+    @FXML
+    void generateReport(ActionEvent event) {
+        String query = "SELECT * FROM payment WHERE type = '"+type.getValue()+"'";
+        String filePath = "src/com/pawnshop/paymgmt/report/payment_report.jrxml";
+        
+        Report report = new Report();
+        report.generateReport(query, filePath);
+    }
+
     /**
      * Initializes the controller class.
      *
@@ -76,6 +91,9 @@ public class ViewPaymentsFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        type.getItems().add("Installments");
+        type.getItems().add("Loan Recovery");
+        
         int loan_id;
         colPaymentId.setCellValueFactory(new PropertyValueFactory<>("paymentId"));
         colPaymentType.setCellValueFactory(new PropertyValueFactory<>("paymentType"));
@@ -87,11 +105,11 @@ public class ViewPaymentsFXMLController implements Initializable {
 
         loan_id = (loan == null) ? 0 : loan.getLoanId();
         table.getItems().setAll(payDAO.getAllPayments(loan_id));
-        
+
         table.setContextMenu(createContextMenu());
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
-    
+
     private ContextMenu createContextMenu() {
         ContextMenu conMenu = new ContextMenu();
 
@@ -116,13 +134,15 @@ public class ViewPaymentsFXMLController implements Initializable {
             Scene scene = new Scene(payments);
             stage = new Stage();
             stage.setScene(scene);
+            stage.setTitle("Update Payment");
+            stage.setResizable(false);
             stage.show();
             stage.setOnHiding((WindowEvent we) -> refresh());
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-    
+
     private void deletePaymentWindow() {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -151,12 +171,12 @@ public class ViewPaymentsFXMLController implements Initializable {
         loan_id = (loan == null) ? 0 : loan.getLoanId();
         table.getItems().setAll(payDAO.getAllPayments(loan_id));
     }
-    
-    private void recheckLoan(){
+
+    private void recheckLoan() {
         ILoanDAO loanDAO = new LoanDAO();
         double remaining = loan.getRemainder();
-        double currPayment =  table.getSelectionModel().getSelectedItem().getAmount();
-        
+        double currPayment = table.getSelectionModel().getSelectedItem().getAmount();
+
         double newRemaining = remaining + currPayment;
         loanDAO.updateLoanPayment(loan.getLoanId(), newRemaining);
     }
