@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f6c4cc4d-3c09-4c52-8d09-d95b1ddc9a7a">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="4.177248169415708"/>
+	<property name="ireport.x" value="38"/>
+	<property name="ireport.y" value="257"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -69,9 +69,9 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="26" splitType="Stretch">
+		<band height="34" splitType="Stretch">
 			<staticText>
-				<reportElement style="Column header" x="0" y="7" width="168" height="18" forecolor="#000000" uuid="0b4d41ca-8bd8-4c73-9acf-87e88d8350c1"/>
+				<reportElement style="Column header" x="0" y="8" width="168" height="18" forecolor="#000000" uuid="0b4d41ca-8bd8-4c73-9acf-87e88d8350c1"/>
 				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
@@ -98,45 +98,72 @@
 				</textElement>
 				<text><![CDATA[Email]]></text>
 			</staticText>
+			<line>
+				<reportElement x="2" y="5" width="553" height="1" uuid="d84e3920-89b8-47f8-9f6c-c8bbb3c103de"/>
+			</line>
+			<line>
+				<reportElement x="2" y="26" width="553" height="1" uuid="aa5e0053-6abb-47e3-8a6c-f5fecb433224"/>
+			</line>
+			<line>
+				<reportElement x="302" y="26" width="100" height="1" uuid="715dd559-76c0-4574-9993-7eeca2c1a016"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="18" splitType="Stretch">
+		<band height="33" splitType="Stretch">
 			<frame>
-				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="aedda0ed-15d6-455c-8f46-1770571c50de"/>
+				<reportElement style="Row" mode="Transparent" x="0" y="0" width="555" height="18" uuid="aedda0ed-15d6-455c-8f46-1770571c50de"/>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="0" y="0" width="168" height="18" uuid="d4dd515d-af64-4ffd-8c05-5ad60066b6f9"/>
+					<reportElement style="Detail" positionType="Float" x="28" y="0" width="125" height="18" uuid="d4dd515d-af64-4ffd-8c05-5ad60066b6f9"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="168" y="0" width="163" height="18" uuid="cc16b216-108c-44e5-ae08-74a21d84abef"/>
+					<reportElement style="Detail" positionType="Float" x="180" y="0" width="139" height="18" uuid="cc16b216-108c-44e5-ae08-74a21d84abef"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="331" y="0" width="111" height="18" uuid="8d1cdc0b-0c1a-43de-916e-6fce239e165d"/>
+					<reportElement style="Detail" positionType="Float" x="341" y="0" width="101" height="18" uuid="8d1cdc0b-0c1a-43de-916e-6fce239e165d"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{contact_no}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="442" y="0" width="111" height="18" uuid="f0e1620f-2092-45a3-b7a4-edcd1f946720"/>
+					<reportElement style="Detail" positionType="Float" x="451" y="0" width="102" height="18" uuid="f0e1620f-2092-45a3-b7a4-edcd1f946720"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 				</textField>
 			</frame>
+			<line>
+				<reportElement x="2" y="32" width="553" height="1" uuid="dc559853-99b5-4e4a-aff2-5cb65a4e5f2d"/>
+			</line>
+			<line>
+				<reportElement x="331" y="-28" width="1" height="60" uuid="adde0e1f-6c42-4bb5-9b6e-acf2f6ca50af"/>
+			</line>
+			<line>
+				<reportElement x="168" y="-29" width="1" height="61" uuid="871dc814-0519-4a4a-8232-c9991be6908b"/>
+			</line>
+			<line>
+				<reportElement x="444" y="-28" width="1" height="60" uuid="593c8c42-bc5a-42de-99b8-532419d7973a"/>
+			</line>
+			<line>
+				<reportElement x="554" y="-28" width="1" height="60" uuid="0ed32115-be0d-4b7b-a899-103c92042c4c"/>
+			</line>
+			<line>
+				<reportElement x="2" y="-29" width="1" height="61" uuid="93841c9a-feaa-42eb-9905-3b502fd17c11"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="7" splitType="Stretch">
+		<band height="13" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="51220311-874e-4943-9714-668027908988"/>
 				<graphicElement>

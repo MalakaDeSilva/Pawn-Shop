@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -57,14 +58,14 @@ public class LoginFXMLController implements Initializable {
         if (validated) {
             if (new EmployeeDAO().login(username.getText(), password.getText())) {
                 employee = username.getText();
+                stage.close();
+                stage = new Stage();
                 try {
                     Parent viewItem = FXMLLoader.load(getClass().getResource("/com/pawnshop/itemmgmt/view/viewItemsFXML.fxml"));
 
                     Scene scene = new Scene(viewItem);
                     DBConnection.getConnection();
                     stage.setTitle(Constants.SHOP_TITLE);
-                    stage.setWidth(1100);
-                    stage.setHeight(700);
                     stage.setScene(scene);
                     stage.show();
 

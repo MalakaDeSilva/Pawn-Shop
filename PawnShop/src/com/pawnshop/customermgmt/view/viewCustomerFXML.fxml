@@ -9,10 +9,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" stylesheets="@../../../../stylesheets/styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pawnshop.customermgmt.view.ViewCustomerFXMLController">
    <children>
-      <AnchorPane id="nav-bar" maxHeight="1.7976931348623157E308" maxWidth="210.0" prefHeight="500.0" stylesheets="@../../../../stylesheets/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane id="nav-bar" maxHeight="1.7976931348623157E308" maxWidth="210.0" prefHeight="700.0" stylesheets="@../../../../stylesheets/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="10.0">
                <image>
@@ -45,9 +46,14 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane id="content" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="900.0" stylesheets="@../../../../stylesheets/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane id="content" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="900.0" stylesheets="@../../../../stylesheets/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="table" layoutX="90.0" layoutY="50.0" prefHeight="350.0" stylesheets="@../../../../stylesheets/styles.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="75.0">
+            <Text layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supipi Pawn Shop" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="15.0">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Text>
+            <TableView fx:id="table" layoutX="90.0" layoutY="50.0" prefHeight="350.0" stylesheets="@../../../../stylesheets/styles.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="85.0">
               <columns>
                 <TableColumn fx:id="colNIC" prefWidth="150.0" text="NIC" />
                 <TableColumn fx:id="colName" prefWidth="150.0" text="Name" />
@@ -56,8 +62,8 @@
                   <TableColumn fx:id="colAddress" prefWidth="300.0" text="Address" />
               </columns>
             </TableView>
-            <Button id="button" layoutX="760.0" layoutY="424.0" mnemonicParsing="false" onAction="#genCustomers" prefHeight="40.0" prefWidth="90.0" stylesheets="@../../../../stylesheets/styles.css" text="Customers" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="50.0" />
-            <Button id="button" layoutX="599.0" layoutY="405.0" mnemonicParsing="false" onAction="#genDeleteCustomers" prefHeight="40.0" prefWidth="123.0" stylesheets="@../../../../stylesheets/styles.css" text="Deleted Customers" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="150.0" />
+            <Button id="button" layoutX="760.0" layoutY="424.0" mnemonicParsing="false" onAction="#genCustomers" prefHeight="40.0" stylesheets="@../../../../stylesheets/styles.css" text="Customers" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="50.0" />
+            <Button id="button" layoutX="599.0" layoutY="405.0" mnemonicParsing="false" onAction="#genDeleteCustomers" prefHeight="40.0" stylesheets="@../../../../stylesheets/styles.css" text="Deleted Customers" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="150.0" />
          </children>
          <padding>
             <Insets bottom="30.0" />

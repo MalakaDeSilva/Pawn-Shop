@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="da6abff5-130f-461b-b51e-2b735b3f7f80">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.9487171000000025"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
@@ -41,7 +41,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="132" splitType="Stretch">
+		<band height="141" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="80970f78-5b60-4ee1-b395-6e9cd6a915a5"/>
 				<staticText>
@@ -72,98 +72,128 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="25" splitType="Stretch">
+		<band height="39" splitType="Stretch">
 			<staticText>
-				<reportElement style="Column header" x="0" y="7" width="79" height="18" forecolor="#000000" uuid="199eead1-63ef-4518-bfa3-194e212ba236"/>
+				<reportElement style="Column header" x="8" y="7" width="49" height="18" forecolor="#000000" uuid="199eead1-63ef-4518-bfa3-194e212ba236"/>
 				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Payment]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="79" y="7" width="103" height="18" forecolor="#000000" uuid="487bf595-ae22-4bef-8fb4-704c4612d6a9"/>
+				<reportElement style="Column header" x="63" y="7" width="87" height="18" forecolor="#000000" uuid="487bf595-ae22-4bef-8fb4-704c4612d6a9"/>
 				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Amount (Rs.)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="184" y="7" width="79" height="18" forecolor="#000000" uuid="69cd3eee-a7cf-4670-aa6d-057c9d99017d"/>
+				<reportElement style="Column header" x="162" y="7" width="85" height="18" forecolor="#000000" uuid="69cd3eee-a7cf-4670-aa6d-057c9d99017d"/>
 				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Accepted by]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="263" y="7" width="79" height="18" forecolor="#000000" uuid="d15f2d33-81b2-4922-8237-9f90851663c3"/>
+				<reportElement style="Column header" x="255" y="7" width="85" height="18" forecolor="#000000" uuid="d15f2d33-81b2-4922-8237-9f90851663c3"/>
 				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Customer]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="348" y="7" width="103" height="18" forecolor="#000000" uuid="141bf946-7774-45ac-ae1a-48bc4992798a"/>
+				<reportElement style="Column header" x="346" y="7" width="89" height="18" forecolor="#000000" uuid="141bf946-7774-45ac-ae1a-48bc4992798a"/>
 				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Loan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="451" y="7" width="102" height="18" forecolor="#000000" uuid="8c99a28b-84c1-4142-9813-0475bd0e6086"/>
+				<reportElement style="Column header" x="445" y="7" width="102" height="18" forecolor="#000000" uuid="8c99a28b-84c1-4142-9813-0475bd0e6086"/>
 				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Date]]></text>
 			</staticText>
+			<line>
+				<reportElement x="2" y="0" width="553" height="1" uuid="075cc2b9-d3a9-48c4-8fce-066e648d6276"/>
+			</line>
+			<line>
+				<reportElement x="2" y="31" width="553" height="1" uuid="20227fb7-236b-41b7-bcb5-aca3f33c14d0"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="18" splitType="Stretch">
+		<band height="28" splitType="Stretch">
 			<frame>
 				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="f8e2b683-a17a-4907-9f8b-9a20b2ad6a60"/>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="0" y="0" width="79" height="18" uuid="cd93895a-85d3-4224-b045-1b9f688244f8"/>
-					<textElement>
+					<reportElement style="Detail" positionType="Float" x="8" y="0" width="49" height="18" uuid="cd93895a-85d3-4224-b045-1b9f688244f8"/>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{payment_id}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="79" y="0" width="103" height="18" uuid="1ea8f384-a809-4565-bc85-997a6cfdd717"/>
-					<textElement>
+					<reportElement style="Detail" positionType="Float" x="63" y="0" width="87" height="18" uuid="1ea8f384-a809-4565-bc85-997a6cfdd717"/>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="184" y="0" width="79" height="18" uuid="0424504f-a559-4266-8c8e-37ec43e90bfc"/>
-					<textElement>
+					<reportElement style="Detail" positionType="Float" x="162" y="0" width="85" height="18" uuid="0424504f-a559-4266-8c8e-37ec43e90bfc"/>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{emp_nic}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="263" y="0" width="79" height="18" uuid="efa3d097-5875-4ee3-87ab-d8b24ef5a0d3"/>
-					<textElement>
+					<reportElement style="Detail" positionType="Float" x="255" y="0" width="85" height="18" uuid="efa3d097-5875-4ee3-87ab-d8b24ef5a0d3"/>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{nic}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="348" y="0" width="103" height="18" uuid="10b49e29-6708-4794-86ce-6977123a1fdb"/>
-					<textElement>
+					<reportElement style="Detail" positionType="Float" x="347" y="0" width="89" height="18" uuid="10b49e29-6708-4794-86ce-6977123a1fdb"/>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{loan_id}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="451" y="0" width="102" height="18" uuid="23e43c6d-df51-46ba-b048-ed00046f58e1"/>
-					<textElement>
+					<reportElement style="Detail" positionType="Float" x="443" y="0" width="102" height="18" uuid="23e43c6d-df51-46ba-b048-ed00046f58e1"/>
+					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{payment_date}]]></textFieldExpression>
 				</textField>
 			</frame>
+			<line>
+				<reportElement x="2" y="24" width="553" height="1" uuid="2f803440-0e60-4ad5-a155-d4262c383935"/>
+			</line>
+			<line>
+				<reportElement x="2" y="-39" width="1" height="63" uuid="f26862b8-df11-45db-b69e-96a8379ecaff"/>
+			</line>
+			<line>
+				<reportElement x="59" y="-38" width="1" height="62" uuid="867c1a9f-cc85-4d4a-b9ea-3caa650bdafa"/>
+			</line>
+			<line>
+				<reportElement x="155" y="-38" width="1" height="62" uuid="ff367459-3168-4366-9171-81d6f43e8cd4"/>
+			</line>
+			<line>
+				<reportElement x="250" y="-38" width="1" height="62" uuid="d1cfd3f0-6b20-45da-b3ee-e114341ea0a8"/>
+			</line>
+			<line>
+				<reportElement x="342" y="-38" width="1" height="62" uuid="cfeb70fc-e33c-4d42-a315-d0104b77a08d"/>
+			</line>
+			<line>
+				<reportElement x="439" y="-38" width="1" height="62" uuid="fcf1c846-c379-4a0c-ac35-4f9c87953b73"/>
+			</line>
+			<line>
+				<reportElement x="554" y="-38" width="1" height="62" uuid="ba95c540-cac1-4380-a705-f62cb8424db0"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
