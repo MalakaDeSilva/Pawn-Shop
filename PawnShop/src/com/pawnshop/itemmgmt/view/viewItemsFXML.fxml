@@ -14,7 +14,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pawnshop.itemmgmt.view.ViewItemsFXMLController">
    <children>
-      <AnchorPane id="nav-bar" maxHeight="161.0" maxWidth="1.7976931348623157E308" stylesheets="@../../../../stylesheets/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane id="nav-bar" maxHeight="161.0" maxWidth="1.7976931348623157E308" prefHeight="700.0" stylesheets="@../../../../stylesheets/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="10.0">
                <image>
@@ -47,9 +47,9 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane id="content" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="900.0" stylesheets="@../../../../stylesheets/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane id="content" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="900.0" stylesheets="@../../../../stylesheets/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="table" layoutX="90.0" layoutY="50.0" prefHeight="350.0" stylesheets="@../../../../stylesheets/styles.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="75.0">
+            <TableView fx:id="table" layoutX="90.0" layoutY="50.0" prefHeight="350.0" stylesheets="@../../../../stylesheets/styles.css" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="85.0">
                
                       <columns>
                   <TableColumn fx:id="colItemId" prefWidth="72.0" text="Item Id" />
@@ -64,6 +64,11 @@
             </TableView>
             <ComboBox fx:id="status" layoutX="700.0" layoutY="423.0" onAction="#generateReport" prefWidth="150.0" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
             <Text layoutX="593.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generate Report:" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="217.140625" />
+            <Text layoutX="55.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supipi Pawn Shop" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="15.0">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Text>
          </children>
          <padding>
             <Insets bottom="30.0" />

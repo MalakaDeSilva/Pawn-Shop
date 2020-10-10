@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `address` varchar(200) NOT NULL,
   `contact_no` int(11) NOT NULL,
   `email` varchar(50) DEFAULT NULL,
+  `deleted` int(11) DEFAULT 0,
   PRIMARY KEY (`nic`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -61,6 +62,7 @@ CREATE TABLE IF NOT EXISTS item (
   item_id int(11) NOT NULL AUTO_INCREMENT,
   type varchar(50) NOT NULL,
   weight double NOT NULL,
+  karat int(11) NOT NULL,
   value double NOT NULL,
   status varchar(20) NOT NULL,
   description varchar(255) NOT NULL,
@@ -78,6 +80,8 @@ CREATE TABLE IF NOT EXISTS item (
 CREATE TABLE IF NOT EXISTS loan (
   loan_id int(11) NOT NULL AUTO_INCREMENT,
   value double NOT NULL,
+  rate float NOT NULL,
+  remainder double NOT NULL,
   duedate datetime NOT NULL,
   billdate datetime NOT NULL,
   emp_nic varchar(20) NOT NULL,
@@ -102,6 +106,7 @@ CREATE TABLE IF NOT EXISTS payment (
   emp_nic varchar(20) NOT NULL,
   nic varchar(15) NOT NULL,
   loan_id int(11) NOT NULL,
+  payment_date date NOT NULL,
   PRIMARY KEY (payment_id),
   FOREIGN KEY (emp_nic) REFERENCES employee(nic),
   FOREIGN KEY (nic) REFERENCES customers(nic) ON DELETE CASCADE,

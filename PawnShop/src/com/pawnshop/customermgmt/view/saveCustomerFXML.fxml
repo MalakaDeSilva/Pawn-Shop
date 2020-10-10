@@ -12,9 +12,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="content" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../../../../stylesheets/styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pawnshop.customermgmt.view.SaveCustomerFXMLController">
+<AnchorPane id="content" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" stylesheets="@../../../../stylesheets/styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pawnshop.customermgmt.view.SaveCustomerFXMLController">
    <children>
-      <GridPane layoutY="30.0" prefHeight="400.0" prefWidth="700.0" scaleShape="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="30.0">
+      <Text layoutX="266.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supipi Pawn Shop" AnchorPane.leftAnchor="266.0" AnchorPane.rightAnchor="266.65625" AnchorPane.topAnchor="30.0">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <GridPane layoutY="30.0" prefHeight="400.0" prefWidth="700.0" scaleShape="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="125.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="1.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
